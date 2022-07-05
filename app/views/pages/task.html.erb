@@ -1,0 +1,20 @@
+<h1>MY Task</h1>
+
+<%= form_tag '/' do %>
+    <%= text_field_tag 'search' %>
+    <%= submit_tag "搜尋" %>
+<% end %>
+
+<br>
+
+<%= form_tag '/' do %>
+    標題：<%= text_field_tag 'title' %>
+    內容：<%= text_field_tag 'content' %>
+    標籤：<%= text_field_tag 'tag' %>
+    開始日期：<%= date_field_tag(:start_time, value = nil, options = {})%>
+    結束日期：<%= date_field_tag(:end_time, value = nil, options = {})%>
+    優先順序：<%= select_tag 'priority', options_for_select(["高", "中", "低"]) %>
+    任務狀態：<%= select_tag 'state', options_for_select(["待處理", "進行中", "已完成"]) %>
+
+    <%= submit_tag "+" %>
+<% end %>
