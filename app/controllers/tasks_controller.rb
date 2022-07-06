@@ -10,7 +10,6 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      flash[:notice] = "Task successfully created"
       redirect_to '/'
     else
       render :new, status: :unprocessable_entity
@@ -20,10 +19,9 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to(@task)
-      flash[:success] = "Task updated!"
+      redirect_to '/'
     else
-      render "edit"
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -32,12 +30,12 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 
   def destroy
     Task.destroy(params[:id])
-    flash[:success] = "Task deleted!"
+    redirect_to('/')
   end
 
   private
@@ -45,4 +43,3 @@ class TasksController < ApplicationController
      params.require(:task).permit(:user_id, :title, :content, :tag, :build_time, :start_time, :end_time, :priority, :state)
    end
 end
-

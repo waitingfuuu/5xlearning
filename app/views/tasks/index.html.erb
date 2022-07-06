@@ -33,9 +33,8 @@
         <td><%= task.end_time %></td>
         <td><%= task.priority %></td>
         <td><%= task.state %></td>
-        <td><%= link_to "Show", task %></td>
-        <td><%= link_to "Edit", task %></td>
-        <td><%= link_to "Destroy", task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        <td><%= link_to "編輯", edit_task_path(task) %></td>
+        <td><%= link_to "刪除", task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,24 @@
+<%= form_for(task) do |f| %>
+  <%= f.label :title, "標題" %>
+  <%= f.text_field :title %> <br />
+
+  <%= f.label :content, "內容" %>
+  <%= f.text_area :content %> <br />
+
+  <%= f.label :tag, "標籤" %>
+  <%= f.text_field :tag %> <br />
+
+  <%= f.label :start_time, "開始日期" %>
+  <%= f.date_field :start_time %> <br />
+
+  <%= f.label :end_time, "結束日期" %>
+  <%= f.date_field :end_time %> <br />
+
+  <%= f.label :priority, "優先順序" %>	
+  <%= f.select(:priority, ["高", "中", "低"]) %> <br />
+
+  <%= f.label :state, "任務狀態" %>
+  <%= f.select(:state, ["待處理", "進行中", "已完成"]) %> <br />
+
+  <%= f.submit %>
+<% end %>
