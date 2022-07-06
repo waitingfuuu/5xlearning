@@ -1,4 +1,4 @@
-<h1>Task</h1>
+<h1 style="width:100%;text-align:center">Task</h1>
 
 <%= form_tag(root_path, :method => "get") do %>
     <%= search_field_tag 'search' %>
@@ -39,3 +39,8 @@
     <% end %>
   </tbody>
 </table>
+
+<br />
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
