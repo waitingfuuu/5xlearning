@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/task", to: "pages#task"
-
+  root to: 'tasks#index'
+  
   resources :tasks
 end
