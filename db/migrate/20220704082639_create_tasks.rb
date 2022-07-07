@@ -5,11 +5,11 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :content
       t.string :tag
-      t.integer :build_time
-      t.integer :start_time
-      t.integer :end_time
-      t.integer :priority
-      t.integer :state
+      t.date :build_time
+      t.date :start_time
+      t.date :end_time
+      t.string :priority
+      t.string :state
 
       t.timestamps
     end

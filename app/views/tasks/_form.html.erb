@@ -1,67 +1,24 @@
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= form_for(task) do |f| %>
+  <%= f.label :title, "標題" %>
+  <%= f.text_field :title %> <br />
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.label :content, "內容" %>
+  <%= f.text_area :content %> <br />
 
-  <div>
-    <%= form.label :task_id, style: "display: block" %>
-    <%= form.number_field :task_id %>
-  </div>
+  <%= f.label :tag, "標籤" %>
+  <%= f.text_field :tag %> <br />
 
-  <div>
-    <%= form.label :task_user, style: "display: block" %>
-    <%= form.text_field :task_user %>
-  </div>
+  <%= f.label :start_time, "開始日期" %>
+  <%= f.datetime_select :start_time, :ampm => true, :start_minute => [0,15,30,45] %> <br />
 
-  <div>
-    <%= form.label :task_title, style: "display: block" %>
-    <%= form.text_field :task_title %>
-  </div>
+  <%= f.label :end_time, "結束日期" %>
+  <%= f.datetime_select :end_time, :ampm => true, :start_minute => [0,15,30,45] %> <br />
 
-  <div>
-    <%= form.label :task_content, style: "display: block" %>
-    <%= form.text_area :task_content %>
-  </div>
+  <%= f.label :priority, "優先順序" %>	
+  <%= f.select(:priority, ["高", "中", "低"]) %> <br />
 
-  <div>
-    <%= form.label :task_tag, style: "display: block" %>
-    <%= form.text_field :task_tag %>
-  </div>
+  <%= f.label :state, "任務狀態" %>
+  <%= f.select(:state, ["待處理", "進行中", "已完成"]) %> <br />
 
-  <div>
-    <%= form.label :task_build_time, style: "display: block" %>
-    <%= form.number_field :task_build_time %>
-  </div>
-
-  <div>
-    <%= form.label :task_start_time, style: "display: block" %>
-    <%= form.number_field :task_start_time %>
-  </div>
-
-  <div>
-    <%= form.label :task_end_time, style: "display: block" %>
-    <%= form.number_field :task_end_time %>
-  </div>
-
-  <div>
-    <%= form.label :task_priority, style: "display: block" %>
-    <%= form.number_field :task_priority %>
-  </div>
-
-  <div>
-    <%= form.label :task_state, style: "display: block" %>
-    <%= form.number_field :task_state %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= f.submit btn %>
 <% end %>
