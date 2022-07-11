@@ -1,11 +1,22 @@
 require 'rails_helper'
 
+FactoryBot.define do
+  factory :task do
+    user_id { Faker::Number.decimal_part(digits: 2) }
+    title { Faker::Job.title }
+    content { Faker::String.random }
+    tag { Faker::String.random(length: 4) }
+    start_time { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default) }
+    end_time { Faker::Time.between(from: DateTime.now, to: DateTime.now + 1, format: :default) }
+    priority { "高" }
+    state { "處理中" }
+  end
+end
+
 feature "tasks", :type => :feature do
 
   before(:each) do
-    @task = Task.new
-    @task.title = "oldtitle"
-    @task.save
+    FactoryBot.create(:task)
   end
 
   scenario "when create task" do
@@ -40,12 +51,15 @@ feature "tasks", :type => :feature do
 
     within("#task_form") do
       fill_in "task[title]", with: "changetitle"
-      fill_in "task[content]", with: "iamdifferent"
+      fill_in "task[content]", with: "new content"
+      fill_in "task[tag]", with: "newtag"
     end
 
     click_button "修改"
     
     expect(page).to have_content("changetitle")
+    expect(page).to have_content("new content")
+    expect(page).to have_content("newtag")
 
     task = Task.last
     expect(task.title).to eq("changetitle")
@@ -59,9 +73,9 @@ feature "tasks", :type => :feature do
 
     click_link "刪除"
     
-    expect(page).to have_no_content("oldtitle")
+    expect(page).to have_no_content("apple")
 
-    task = Task.find_by title: "oldtitle"
+    task = Task.find_by title: "apple"
     expect(task).to be_nil
   end
 
