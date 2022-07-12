@@ -23,8 +23,8 @@ describe 'tasks', type: :feature do
 
   context 'when create task' do
     it 'link to new task path' do
-      click_link '新增任務'
-      expect(page).to have_content('新增任務')
+      click_link I18n.t(:create_task)
+      expect(page).to have_content(I18n.t(:create_task))
     end
 
     it 'shows new task' do
@@ -32,7 +32,7 @@ describe 'tasks', type: :feature do
       within('#task_form') do
         fill_in 'task[title]', with: 'newtask'
       end
-      click_button '新增'
+      click_button I18n.t(:submit)
       expect(page).to have_content('newtask')
     end
   end
@@ -43,11 +43,11 @@ describe 'tasks', type: :feature do
     end
 
     it 'shows edited task' do
-      click_link '編輯'
+      click_link I18n.t(:edit)
       within('#task_form') do
         fill_in 'task[title]', with: 'change-title'
       end
-      click_button '修改'
+      click_button I18n.t(:submit)
       expect(page).to have_content('change-title')
     end
   end
@@ -58,7 +58,7 @@ describe 'tasks', type: :feature do
     end
 
     it 'deleted the task' do
-      click_link '刪除'
+      click_link I18n.t(:delete)
       expect(Task.count).to eq(0)
     end
   end
