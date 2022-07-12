@@ -34,8 +34,28 @@
         <td><%= task.tag %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
-        <td><%= task.priority %></td>
-        <td><%= task.state %></td>
+        <td>
+          <% if task.priority == '0' %>
+            <%=t :high %>
+            <% else %>
+              <% if task.priority == '1' %>
+                <%=t :medium %>
+              <% else %>
+                <%=t :low %>
+              <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if task.state == '0' %>
+            <%=t :pending %>
+            <% else %>
+              <% if task.state == '1' %>
+                <%=t :processing %>
+              <% else %>
+                <%=t :solved %>
+              <% end %>
+          <% end %>
+        </td>
         <td><%= link_to t(:edit), edit_task_path(task) %></td>
         <td><%= link_to t(:delete), task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
       </tr>
