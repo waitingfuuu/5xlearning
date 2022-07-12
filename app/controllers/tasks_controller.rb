@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
-  before_action :find_task, only: [:update, :edit]
+  before_action :find_task, only: %i[update edit]
 
   def index
     @tasks = Task.all
@@ -27,7 +29,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       flash[:notice] = "Task: #{@task.title} successfully edited"
 
-      redirect_to  root_path
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +38,7 @@ class TasksController < ApplicationController
   def destroy
     Task.destroy(params[:id])
 
-    flash[:notice] = "Task successfully deleted"
+    flash[:notice] = 'Task successfully deleted'
     redirect_to root_path
   end
 
@@ -44,12 +46,12 @@ class TasksController < ApplicationController
 
   private
 
-    def task_params
-      params.require(:task).permit(:user_id, :title, :content, :tag, 
-                                  :build_time, :start_time, :end_time, :priority, :state)
-    end
+  def task_params
+    params.require(:task).permit(:user_id, :title, :content, :tag,
+                                 :build_time, :start_time, :end_time, :priority, :state)
+  end
 
-    def find_task
-      @task = Task.find(params[:id])
-    end
+  def find_task
+    @task = Task.find(params[:id])
+  end
 end
