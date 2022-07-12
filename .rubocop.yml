@@ -52,6 +52,8 @@ Metrics:
     - lib/tasks/**/*
 Metrics/ClassLength:
   Max: 120
+Metrics/ExampleLength:
+  Max: 10
 Metrics/BlockLength:
   Exclude:
     - config/routes.rb
