@@ -1,24 +1,35 @@
 <%= form_for @task, :html=> {:id => 'task_form'} do |f| %>
-  <%= f.label :title, "標題" %>
-  <%= f.text_field :title %> <br />
-
-  <%= f.label :content, "內容" %>
-  <%= f.text_area :content %> <br />
-
-  <%= f.label :tag, "標籤" %>
-  <%= f.text_field :tag %> <br />
-
-  <%= f.label :start_time, "開始日期" %>
-  <%= f.datetime_select :start_time, :ampm => true, :start_minute => [0,15,30,45] %> <br />
-
-  <%= f.label :end_time, "結束日期" %>
-  <%= f.datetime_select :end_time, :ampm => true, :start_minute => [0,15,30,45] %> <br />
-
-  <%= f.label :priority, "優先順序" %>	
-  <%= f.select(:priority, ["高", "中", "低"]) %> <br />
-
-  <%= f.label :state, "任務狀態" %>
-  <%= f.select(:state, ["待處理", "進行中", "已完成"]) %> <br />
-
-  <%= f.submit btn %>
+  <table>
+    <tr>
+      <td><%= t :title %></td>
+      <td><%= f.text_field :title %> <br /></td>
+    </tr>
+    <tr>
+      <td><%= t :content %></td>
+      <td><%= f.text_area :content %> <br /></td>
+    </tr>
+    <tr>
+      <td><%= t :tag %></td>
+      <td><%= f.text_area :tag %> <br /></td>
+    </tr>
+    <tr>
+      <td><%= t :start %></td>
+      <td><%= f.datetime_select :start_time, :ampm => true, :start_minute => [0,15,30,45] %> <br /></td>
+    </tr>
+    <tr>
+      <td><%= t :deadline %></td>
+      <td><%= f.datetime_select :end_time, :ampm => true, :start_minute => [0,15,30,45] %> <br /></td>
+    </tr>
+    <tr>
+      <td><%= t :priority %></td>
+      <td><%= f.select(:priority, [t(:high), t(:medium), t(:low)]) %> <br /></td>
+    </tr>
+      <td><%= t :state %></td>
+      <td><%= f.select(:state, [t(:pending), t(:processing), t(:solved)]) %> <br /></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.submit t(:submit) %></td>
+    </tr>
+    
+  </table>
 <% end %>

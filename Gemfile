@@ -58,6 +58,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0.rc1'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem "rails-i18n"
 end
 
 group :development do
