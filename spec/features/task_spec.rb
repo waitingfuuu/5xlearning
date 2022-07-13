@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'tasks', type: :feature do
   before do
-    create(:task, title: 'test-task \u0000')
+    create(:task, title: 'test-task')
     visit root_path
   end
 
