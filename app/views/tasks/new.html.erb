@@ -1,6 +1,6 @@
-<h1><%=t :create_task %></h1>
+<h1><%= t('form.create_task') %></h1>
 
 <%= render "form", task: @task %>
 
 <br />
-<%= link_to t(:back_to_task_list), root_path %>
+<%= link_to t('form.back_to_task_list'), root_path %>

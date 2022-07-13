@@ -31,14 +31,32 @@
 
 en:
   hello: "Hello world"
-  search: "search"
-  high: "high"
-  medium: "medium"
-  low: "low"
-  pending: "pending"
-  processing: "processing"
-  solved: "solved"
-  submit: "submit"
-  task_successfully_created: "Task successfully created!"
-  task_successfully_edited: "Task successfully edited!"
-  task_successfully_deleted: "Task successfully deleted!"
+
+  task:
+    title: "Title"
+    content: "Content"
+    tag: "Tag"
+    start: "Start"
+    deadline: "Deadline"
+    priority: "Priority"
+    state: "State"
+    high: "High"
+    medium: "Medium"
+    low: "Low"
+    pending: "Pending"
+    processing: "Processing"
+    solved: "Solved"
+  index:
+    title: "Task List"
+    searchBtn: "search"
+    edit: "edit"
+    delete: "delete"
+  form:
+    create_task: "create task"
+    edit_task: "edit task"
+    submitBtn: "submit"
+    back_to_task_list: "back to task list"
+  flash:
+    task_successfully_created: "Task successfully created!"
+    task_successfully_edited: "Task successfully edited!"
+    task_successfully_deleted: "Task successfully deleted!"

@@ -1,27 +1,27 @@
-<h1 style="width:100%;text-align:center"><%=t :task_list %></h1>
+<h1 style="width:100%;text-align:center"><%= t('index.title') %></h1>
 
 <%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %>
 <%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
 
 <%= form_tag(root_path, :method => "get") do %>
     <%= search_field_tag :search %>
-    <%= submit_tag t(:search) %>
+    <%= submit_tag t('index.searchBtn') %>
 <% end %>
 <br>
 
-<%= link_to t(:create_task), new_task_path %>
+<%= link_to t('form.create_task'), new_task_path %>
 <br>
 
 <table style="width:100%;text-align:center">
   <thead>
     <tr>
-      <th><%=t :title %></th>
-      <th><%=t :content %></th>
-      <th><%=t :tag %></th>
-      <th><%=t :start %></th>
-      <th><%=t :deadline %></th>
-      <th><%=t :priority %></th>
-      <th><%=t :state %></th>
+      <th><%= t('task.title') %></th>
+      <th><%= t('task.content') %></th>
+      <th><%= t('task.tag') %></th>
+      <th><%= t('task.start') %></th>
+      <th><%= t('task.deadline') %></th>
+      <th><%= t('task.priority') %></th>
+      <th><%= t('task.state') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,28 +36,28 @@
         <td><%= task.end_time %></td>
         <td>
           <% if task.priority == '0' %>
-            <%=t :high %>
+            <%= t('task.high') %>
             <% else %>
               <% if task.priority == '1' %>
-                <%=t :medium %>
+                <%=t('task.medium') %>
               <% else %>
-                <%=t :low %>
+                <%= t('task.low') %>
               <% end %>
           <% end %>
         </td>
         <td>
           <% if task.state == '0' %>
-            <%=t :pending %>
+            <%= t('task.pending') %>
             <% else %>
               <% if task.state == '1' %>
-                <%=t :processing %>
+                <%= t('task.processing') %>
               <% else %>
-                <%=t :solved %>
+                <%= t('task.solved') %>
               <% end %>
           <% end %>
         </td>
-        <td><%= link_to t(:edit), edit_task_path(task) %></td>
-        <td><%= link_to t(:delete), task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        <td><%= link_to t('index.edit'), edit_task_path(task) %></td>
+        <td><%= link_to t('index.delete'), task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
