@@ -52,7 +52,7 @@ Metrics:
     - lib/tasks/**/*
 Metrics/ClassLength:
   Max: 120
-Metrics/ExampleLength:
+RSpec/ExampleLength:
   Max: 10
 Metrics/BlockLength:
   Exclude:
