@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    @tasks = Task.order('created_at DESC').reverse
+    @tasks = Task.order('created_at DESC')
   end
 
   def new

@@ -12,15 +12,15 @@
 <%= link_to t('form.create_task'), new_task_path %>
 <br>
 
-<table style="width:100%;text-align:center">
+<table style="width:100%;text-align:center" id='task_list_table'>
   <thead>
     <tr>
-      <th><%= t('task.created_at') %></th>
       <th><%= t('task.title') %></th>
       <th><%= t('task.content') %></th>
       <th><%= t('task.tag') %></th>
       <th><%= t('task.start') %></th>
       <th><%= t('task.deadline') %></th>
+      <th><%= t('task.created_at') %></th>
       <th><%= t('task.priority') %></th>
       <th><%= t('task.state') %></th>
       <th colspan="3"></th>
@@ -28,14 +28,14 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.created_at %></td>
+    <% @tasks.each_with_index do |task, index| %>
+      <tr id = <%= index %> >
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.tag %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
+        <td class='created_at'><%= task.created_at.strftime('%Y-%m-%d %H:%M:%S +%H%M') %></td>
         <td>
           <% if task.priority == '0' %>
             <%= t('task.high') %>
