@@ -17,7 +17,7 @@ end
 
 describe 'tasks', type: :feature do
   before do
-    create(:task, title: 'test-task')
+    create(:task, title: 'test-task \u0000')
     visit root_path
   end
 
