@@ -15,6 +15,7 @@ zh-TW:
     pending: "待處理"
     processing: "進行中"
     solved: "已完成"
+    created_at: "建立時間"
   index:
     title: "任務列表"
     searchBtn: "搜尋"
