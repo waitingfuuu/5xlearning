@@ -1,0 +1,32 @@
+zh-TW:
+  hello: "哈囉！世界！"
+  
+  task:
+    title: "標題"
+    content: "內容"
+    tag: "標籤"
+    start: "開始時間"
+    deadline: "結束時間"
+    priority: "優先順序"
+    state: "狀態"
+    high: "高"
+    medium: "中"
+    low: "低"
+    pending: "待處理"
+    processing: "進行中"
+    solved: "已完成"
+  index:
+    title: "任務列表"
+    searchBtn: "搜尋"
+    edit: "編輯"
+    delete: "刪除"
+  form:
+    create_task: "新建任務"
+    edit_task: "編輯任務"
+    submitBtn: "提交"
+    back_to_task_list: "返回任務列表"
+  flash:
+    task_successfully_created: "任務新建成功！"
+    task_successfully_edited: "任務編輯成功！"
+    task_successfully_deleted: "任務刪除成功！"
+  

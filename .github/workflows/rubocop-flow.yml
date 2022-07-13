@@ -38,7 +38,7 @@ jobs:
       run: |
         bundle install --jobs 4 --retry 3
     - name: Setup database
-      run: bundle exec rails db:create
+      run: cp ./config/example.database.yml ./config/database.yml && bundle exec rails db:create
     - name: Run RuboCop
       run: bundle exec rubocop --parallel
     - name: Run Rspec
