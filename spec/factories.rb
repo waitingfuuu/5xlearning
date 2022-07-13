@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 FactoryBot.define do
   factory :task do
     user_id { Faker::Number.decimal_part(digits: 2) }
