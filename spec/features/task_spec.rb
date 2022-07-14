@@ -18,6 +18,8 @@ describe 'tasks', type: :feature do
       visit new_task_path
       within('#task_form') do
         fill_in 'task[title]', with: 'newtask'
+        fill_in 'task[content]', with: 'hello'
+        fill_in 'task[tag]', with: 'test'
       end
       click_button I18n.t('form.submitBtn')
       expect(page).to have_content('newtask')
