@@ -46,6 +46,7 @@ en:
     pending: "Pending"
     processing: "Processing"
     solved: "Solved"
+    created_at: "Create time"
   index:
     title: "Task List"
     searchBtn: "search"
