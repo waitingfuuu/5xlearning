@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'tasks', type: :feature do
   before do
-    create(:task, title: 'test-task')
+    create(:task, title: 'testtask')
     visit root_path
   end
 
@@ -26,7 +26,7 @@ describe 'tasks', type: :feature do
 
   context 'when edit task' do
     it 'has test-task' do
-      expect(page).to have_content('test-task')
+      expect(page).to have_content('testtask')
     end
 
     it 'shows edited task' do
