@@ -1,4 +1,10 @@
 <%= form_for @task, :html=> {:id => 'task_form'} do |f| %>
+  <% if @task.errors.any? %>
+      <% @task.errors.full_messages.each do |msg| %>
+        <p style='color:red'><%= msg %></p>
+      <% end %>
+  <% end %>
+
   <table>
     <tr>
       <td><%= t('task.title') %></td>
