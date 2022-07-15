@@ -38,6 +38,8 @@ Things you may want to cover:
 
 ## Heroku
 
+https://training5x-wt.herokuapp.com/
+
 * App Information
 
 	- App Name: training5x-wt
