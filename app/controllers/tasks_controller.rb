@@ -4,7 +4,9 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    @tasks = Task.order('created_at DESC')
+    @tasks = Task.order('created_at DESC') if params[:sort_param].blank? || params[:sort_param] == 'created_at'
+
+    @tasks = Task.order('end_time DESC') if params[:sort_param] == 'end_time'
   end
 
   def new

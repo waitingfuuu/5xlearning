@@ -1,7 +1,7 @@
 <h1 style="width:100%;text-align:center"><%= t('index.title') %></h1>
 
-<%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %>
-<%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
+<%= link_to "中文版", :locale => "zh-TW" %>
+<%= link_to "English", :locale => "en" %>
 
 <%= form_tag(root_path, :method => "get") do %>
     <%= search_field_tag :search %>
@@ -19,8 +19,8 @@
       <th><%= t('task.content') %></th>
       <th><%= t('task.tag') %></th>
       <th><%= t('task.start') %></th>
-      <th><%= t('task.deadline') %></th>
-      <th><%= t('task.created_at') %></th>
+      <th><%= link_to t('task.deadline'), root_path(:sort_param => 'end_time') %></th>
+      <th><%= link_to t('task.created_at'), root_path(:sort_param => 'created_at') %></th>
       <th><%= t('task.priority') %></th>
       <th><%= t('task.state') %></th>
       <th colspan="3"></th>
@@ -33,9 +33,9 @@
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.tag %></td>
-        <td><%= task.start_time %></td>
-        <td><%= task.end_time %></td>
-        <td class='created_at'><%= task.created_at.strftime('%Y-%m-%d %H:%M:%S +%H%M') %></td>
+        <td><%= task.start_time.strftime('%Y/%m/%d %H:%M') %></td>
+        <td class='end_time'><%= task.end_time.strftime('%Y/%m/%d %H:%M') %></td>
+        <td class='created_at'><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
         <td>
           <% if task.priority == '0' %>
             <%= t('task.high') %>

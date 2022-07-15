@@ -55,9 +55,22 @@ describe 'tasks', type: :feature do
 
     it 'first task is newest' do
       str = find('tr#0').find('.created_at').text
-      view_created_at = DateTime.parse(str).strftime('%Y-%m-%d %H:%M:%S +%H%M')
-      db_created_at = tasks[0].created_at.strftime('%Y-%m-%d %H:%M:%S +%H%M')
+      view_created_at = DateTime.parse(str).strftime('%Y/%m/%d %H:%M')
+      db_created_at = tasks[0].created_at.strftime('%Y/%m/%d %H:%M')
       expect(db_created_at).to eq(view_created_at)
+    end
+  end
+
+  context 'when click deadline' do
+    before { create_list(:task, 2) }
+
+    it 'tasks order by end_time in db' do
+      click_link I18n.t('task.deadline')
+
+      end_time0 = DateTime.parse(find('tr#0').find('.end_time').text)
+      end_time1 = DateTime.parse(find('tr#1').find('.end_time').text)
+
+      expect(end_time0 > end_time1).to be true
     end
   end
 end
