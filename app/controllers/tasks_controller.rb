@@ -4,11 +4,19 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    @tasks = Task.all.order('created_at DESC')
+    @tasks = Task.order('created_at DESC') if params[:order_params].blank?
+    @tasks = Task.order('end_time DESC') if params[:end_time] == 'desc'
+    @tasks = Task.order('end_time ASC') if params[:end_time] == 'asc'
 
-    return if params[:end_time].blank?
+    if params[:search]
+      @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
 
-    @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
+      @tasks = Task.where('state LIKE ?', '0') if params[:search] == t('task.pending')
+      @tasks = Task.where('state LIKE ?', '1') if params[:search] == t('task.processing')
+      @tasks = Task.where('state LIKE ?', '2') if params[:search] == t('task.solved')
+    else
+      @tasks = Task.all
+    end
   end
 
   def new
