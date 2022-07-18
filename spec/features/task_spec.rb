@@ -61,16 +61,25 @@ describe 'tasks', type: :feature do
     end
   end
 
-  context 'when click deadline' do
+  context 'when tasks order by end_time' do
     before { create_list(:task, 2) }
 
-    it 'tasks order by end_time in db' do
-      click_link I18n.t('task.deadline')
+    it 'using desc' do
+      click_link I18n.t('index.desc')
 
       end_time0 = DateTime.parse(find('tr#0').find('.end_time').text)
       end_time1 = DateTime.parse(find('tr#1').find('.end_time').text)
 
       expect(end_time0 > end_time1).to be true
+    end
+
+    it 'using asc' do
+      click_link I18n.t('index.asc')
+
+      end_time0 = DateTime.parse(find('tr#0').find('.end_time').text)
+      end_time1 = DateTime.parse(find('tr#1').find('.end_time').text)
+
+      expect(end_time0 < end_time1).to be true
     end
   end
 end
