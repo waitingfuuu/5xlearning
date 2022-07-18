@@ -8,7 +8,7 @@ FactoryBot.define do
     tag { Faker::Lorem.words }
     start_time { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
     end_time { Faker::Time.between(from: DateTime.now, to: DateTime.now + 1) }
-    priority { '1' }
-    state { '0' }
+    priority { Faker::Number.between(from: 0, to: 2) }
+    state { Faker::Number.between(from: 0, to: 2) }
   end
 end

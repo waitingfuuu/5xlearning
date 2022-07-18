@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.order('created_at DESC')
+    
     return if params[:end_time].blank?
 
     @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
@@ -12,9 +13,9 @@ class TasksController < ApplicationController
     if params[:search]
       @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
 
-      @tasks = Task.where('state LIKE ?', '0') if params[:search] == t('task.pending')
-      @tasks = Task.where('state LIKE ?', '1') if params[:search] == t('task.processing')
-      @tasks = Task.where('state LIKE ?', '2') if params[:search] == t('task.solved')
+      # @tasks = Task.where('state LIKE ?', '0') if params[:search] == t('task.pending')
+      # @tasks = Task.where('state LIKE ?', '1') if params[:search] == t('task.processing')
+      # @tasks = Task.where('state LIKE ?', '2') if params[:search] == t('task.solved')
     else
       @tasks = Task.all
     end
@@ -25,7 +26,10 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Task.new(task_params.tap do |t|
+      t[:priority] = t[:priority].to_i
+      t[:state] = t[:state].to_i
+    end)
 
     if @task.save
       flash[:notice] = t('flash.task_successfully_created')
@@ -39,7 +43,10 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
-    if @task.update(task_params)
+    if @task.update(task_params.tap do |t|
+      t[:priority] = t[:priority].to_i
+      t[:state] = t[:state].to_i
+    end)
       flash[:notice] = t('flash.task_successfully_edited')
 
       redirect_to root_path
