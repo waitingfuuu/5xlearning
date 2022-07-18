@@ -65,7 +65,7 @@ describe 'tasks', type: :feature do
     before { create_list(:task, 2) }
 
     it 'using desc' do
-      click_link I18n.t('index.desc')
+      visit root_path(end_time: 'desc')
 
       end_time0 = DateTime.parse(find('tr#0').find('.end_time').text)
       end_time1 = DateTime.parse(find('tr#1').find('.end_time').text)
@@ -74,7 +74,7 @@ describe 'tasks', type: :feature do
     end
 
     it 'using asc' do
-      click_link I18n.t('index.asc')
+      visit root_path(end_time: 'asc')
 
       end_time0 = DateTime.parse(find('tr#0').find('.end_time').text)
       end_time1 = DateTime.parse(find('tr#1').find('.end_time').text)

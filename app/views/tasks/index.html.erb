@@ -20,9 +20,11 @@
       <th><%= t('task.tag') %></th>
       <th><%= t('task.start') %></th>
       <th>
-        <%= t('task.deadline') %>
-        <%= link_to t('index.asc'), root_path(:end_time => 'asc') %>
-        <%= link_to t('index.desc'), root_path(:end_time => 'desc') %>
+        <% if params[:end_time].blank? || params[:end_time] == 'asc' %>
+          <%= link_to t('task.deadline'), root_path(:end_time => 'desc') %>
+        <% else %>
+          <%= link_to t('task.deadline'), root_path(:end_time => 'asc') %>
+        <% end %>
       </th>
       <th><%= t('task.created_at') %></th>
       <th><%= t('task.priority') %></th>
@@ -35,7 +37,7 @@
     <% @tasks.each_with_index do |task, index| %>
       <tr id = <%= index %> >
         <td><%= task.title %></td>
-        <td><%= task.content %></td>gi
+        <td><%= task.content %></td>
         <td><%= task.tag %></td>
         <td><%= task.start_time.strftime('%Y/%m/%d %H:%M') %></td>
         <td class='end_time'><%= task.end_time.strftime('%Y/%m/%d %H:%M') %></td>

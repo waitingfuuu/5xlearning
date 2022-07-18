@@ -21,8 +21,6 @@ zh-TW:
     searchBtn: "搜尋"
     edit: "編輯"
     delete: "刪除"
-    asc: "遞增"
-    desc: "遞減"
   form:
     create_task: "新建任務"
     edit_task: "編輯任務"
