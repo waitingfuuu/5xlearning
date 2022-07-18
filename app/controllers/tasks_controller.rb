@@ -5,19 +5,14 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.order('created_at DESC')
-    
-    return if params[:end_time].blank?
 
     @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
 
     if params[:search]
       @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
-
-      # @tasks = Task.where('state LIKE ?', '0') if params[:search] == t('task.pending')
-      # @tasks = Task.where('state LIKE ?', '1') if params[:search] == t('task.processing')
-      # @tasks = Task.where('state LIKE ?', '2') if params[:search] == t('task.solved')
-    else
-      @tasks = Task.all
+      @tasks = Task.where(state: Task.states[:pending]) if params[:search] == '待處理'
+      @tasks = Task.where(state: Task.states[:processing]) if params[:search] == '進行中'
+      @tasks = Task.where(state: Task.states[:solved]) if params[:search] == '已完成'
     end
   end
 
