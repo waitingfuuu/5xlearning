@@ -4,7 +4,11 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    @tasks = Task.order('created_at DESC')
+    @tasks = Task.all.order('created_at DESC')
+
+    return if params[:end_time].blank?
+
+    @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
   end
 
   def new
