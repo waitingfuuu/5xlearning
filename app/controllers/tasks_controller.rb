@@ -10,9 +10,10 @@ class TasksController < ApplicationController
 
     if params[:search]
       @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
-      @tasks = Task.where(state: Task.states[:pending]) if params[:search] == '待處理'
-      @tasks = Task.where(state: Task.states[:processing]) if params[:search] == '進行中'
-      @tasks = Task.where(state: Task.states[:solved]) if params[:search] == '已完成'
+      # @tasks = Task.where(state: Task.states[params[:search]]) if params[:search] == t("task.#{params[:search]}")
+      @tasks = Task.where(state: Task.states[:pending]) if params[:search] == t('task.pending')
+      @tasks = Task.where(state: Task.states[:processing]) if params[:search] == t('task.processing')
+      @tasks = Task.where(state: Task.states[:solved]) if params[:search] == t('task.solved')
     end
   end
 
