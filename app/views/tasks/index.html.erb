@@ -48,10 +48,6 @@
         <td><%= task.start_time.strftime('%Y/%m/%d %H:%M') %></td>
         <td class='end_time'><%= task.end_time.strftime('%Y/%m/%d %H:%M') %></td>
         <td class='created_at'><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-        <% Rails.logger.info('****************************') %>
-        <% Rails.logger.info(task.priority) %>
-        <% Rails.logger.info(task.state) %>
-        <% Rails.logger.info('****************************') %>
         <td class='priority'><%= t("task.#{task.priority}") %></td>
         <td class='state'><%= t("task.#{task.state}") %></td>
         <td><%= link_to t('index.edit'), edit_task_path(task) %></td>
