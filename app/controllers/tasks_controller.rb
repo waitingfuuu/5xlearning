@@ -4,16 +4,12 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    @tasks = Task.all.order('created_at DESC')
-
-    @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
-
     if params[:search]
-      @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
-      # @tasks = Task.where(state: Task.states[params[:search]]) if params[:search] == t("task.#{params[:search]}")
-      @tasks = Task.where(state: Task.states[:pending]) if params[:search] == t('task.pending')
-      @tasks = Task.where(state: Task.states[:processing]) if params[:search] == t('task.processing')
-      @tasks = Task.where(state: Task.states[:solved]) if params[:search] == t('task.solved')
+      search(params[:search])
+    else
+      @tasks = Task.all.order('created_at DESC')
+
+      @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
     end
   end
 
@@ -69,5 +65,12 @@ class TasksController < ApplicationController
 
   def find_task
     @task = Task.find(params[:id])
+  end
+
+  def search(search_params)
+    @tasks = Task.where('title LIKE ?', "%#{search_params}%")
+    @tasks = Task.where(state: Task.states[:pending]) if search_params == t('task.pending')
+    @tasks = Task.where(state: Task.states[:processing]) if search_params == t('task.processing')
+    @tasks = Task.where(state: Task.states[:solved]) if search_params == t('task.solved')
   end
 end
