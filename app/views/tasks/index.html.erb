@@ -36,34 +36,14 @@
   <tbody>
     <% @tasks.each_with_index do |task, index| %>
       <tr id = <%= index %> >
-        <td><%= task.title %></td>
+        <td class='title'><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.tag %></td>
         <td><%= task.start_time.strftime('%Y/%m/%d %H:%M') %></td>
         <td class='end_time'><%= task.end_time.strftime('%Y/%m/%d %H:%M') %></td>
         <td class='created_at'><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-        <td>
-          <% if task.priority == '0' %>
-            <%= t('task.high') %>
-            <% else %>
-              <% if task.priority == '1' %>
-                <%=t('task.medium') %>
-              <% else %>
-                <%= t('task.low') %>
-              <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% if task.state == '0' %>
-            <%= t('task.pending') %>
-            <% else %>
-              <% if task.state == '1' %>
-                <%= t('task.processing') %>
-              <% else %>
-                <%= t('task.solved') %>
-              <% end %>
-          <% end %>
-        </td>
+        <td><%= t("task.#{task.priority}") %></td>
+        <td class='state'><%= t("task.#{task.state}") %></td>
         <td><%= link_to t('index.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('index.delete'), task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
       </tr>
