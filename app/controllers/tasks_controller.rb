@@ -4,13 +4,11 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    if params[:search]
-      search(params[:search])
-    else
-      @tasks = Task.all.order('created_at DESC')
+    return search(params[:search]) if params[:search]
 
-      @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
-    end
+    @tasks = Task.all.order('created_at DESC')
+
+    @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
   end
 
   def new
@@ -18,10 +16,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params.tap do |t|
-      t[:priority] = t[:priority].to_i
-      t[:state] = t[:state].to_i
-    end)
+    @task = Task.new(task_params)
 
     if @task.save
       flash[:notice] = t('flash.task_successfully_created')
@@ -35,10 +30,7 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
-    if @task.update(task_params.tap do |t|
-      t[:priority] = t[:priority].to_i
-      t[:state] = t[:state].to_i
-    end)
+    if @task.update(task_params)
       flash[:notice] = t('flash.task_successfully_edited')
 
       redirect_to root_path
