@@ -28,10 +28,10 @@
     </tr>
     <tr>
       <td><%= t('task.priority') %></td>
-      <td><%= f.select(:priority, [[t('task.high'), :high], [t('task.medium'), :medium], [t('task.low'), :low]]) %> <br /></td>
+      <td><%= f.select(:priority, [[t('task.high'), 'high'], [t('task.medium'), 'medium'], [t('task.low'), 'low']]) %> <br /></td>
     </tr>
       <td><%= t('task.state') %></td>
-      <td><%= f.select(:state, [[t('task.pending'), :pending], [t('task.processing'), :processing], [t('task.solved'), :solved]]) %> <br /></td>
+      <td><%= f.select(:state, [[t('task.pending'), 'pending'], [t('task.processing'), 'processing'], [t('task.solved'), 'solved']]) %> <br /></td>
     </tr>
     <tr>
       <td colspan="2"><%= f.submit t('form.submitBtn') %></td>
