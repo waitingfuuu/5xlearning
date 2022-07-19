@@ -8,8 +8,6 @@ class TasksController < ApplicationController
 
     @tasks = Task.all.order('created_at DESC')
 
-    @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
-
     order(params[:end_time], params[:priority])
   end
 
