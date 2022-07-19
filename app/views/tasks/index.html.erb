@@ -27,7 +27,13 @@
         <% end %>
       </th>
       <th><%= t('task.created_at') %></th>
-      <th><%= t('task.priority') %></th>
+      <th>
+        <% if params[:priority] == 'asc' %>
+          <%= link_to t('task.priority'), root_path(:priority => 'desc') %>
+        <% else %>
+          <%= link_to t('task.priority'), root_path(:priority => 'asc') %>
+        <% end %>
+      </th>
       <th><%= t('task.state') %></th>
       <th colspan="3"></th>
     </tr>
