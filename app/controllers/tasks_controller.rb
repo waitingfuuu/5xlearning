@@ -9,6 +9,8 @@ class TasksController < ApplicationController
     @tasks = Task.all.order('created_at DESC')
 
     @tasks = params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
+
+    order(params[:end_time], params[:priority])
   end
 
   def new
@@ -64,5 +66,13 @@ class TasksController < ApplicationController
     @tasks = Task.where(state: Task.states[:pending]) if search_params == t('task.pending')
     @tasks = Task.where(state: Task.states[:processing]) if search_params == t('task.processing')
     @tasks = Task.where(state: Task.states[:solved]) if search_params == t('task.solved')
+  end
+
+  def order(end_time_params, priority_params)
+    @tasks = if end_time_params
+               end_time_params == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
+             else
+               priority_params == 'asc' ? Task.all.order('priority ASC') : Task.all.order('priority DESC')
+             end
   end
 end

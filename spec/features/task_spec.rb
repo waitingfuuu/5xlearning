@@ -100,4 +100,27 @@ describe 'tasks', type: :feature do
       expect(state).to eq(I18n.t('task.pending'))
     end
   end
+
+  context 'when tasks order by priority' do
+    before do
+      create(:task, priority: 0)
+      create(:task, priority: 2)
+    end
+
+    it 'using desc' do
+      visit root_path(priority: 'desc')
+
+      priority0 = find('tr#0').find('.priority').text
+
+      expect(priority0).to eq(I18n.t('task.low'))
+    end
+
+    it 'using asc' do
+      visit root_path(priority: 'asc')
+
+      priority0 = find('tr#0').find('.priority').text
+
+      expect(priority0).to eq(I18n.t('task.high'))
+    end
+  end
 end
