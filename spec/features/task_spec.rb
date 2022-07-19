@@ -82,4 +82,22 @@ describe 'tasks', type: :feature do
       expect(end_time0 < end_time1).to be true
     end
   end
+
+  context 'when search tasks' do
+    before { create_list(:task, 10) }
+
+    it 'find tasks by title' do
+      fill_in 'search', with: 'task'
+      click_button I18n.t('index.searchBtn')
+      title = find('tr#0').find('.title').text
+      expect(title).to eq('test-task')
+    end
+
+    it 'find tasks by state' do
+      fill_in 'search', with: I18n.t('task.pending')
+      click_button I18n.t('index.searchBtn')
+      state = find('tr#0').find('.state').text
+      expect(state).to eq(I18n.t('task.pending'))
+    end
+  end
 end
