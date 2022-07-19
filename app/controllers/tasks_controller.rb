@@ -4,11 +4,15 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    return search(params[:search]) if params[:search]
+    # return search(params[:search]) if params[:search]
 
-    @tasks = Task.all.order('created_at DESC')
+    # order(params[:end_time], params[:priority])
 
-    order(params[:end_time], params[:priority])
+    @tasks = Task.tagged_with(params[:tag]) if params[:tag]
+
+    @tasks = Task.all
+
+    @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new
