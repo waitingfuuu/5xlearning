@@ -92,13 +92,6 @@ describe 'tasks', type: :feature do
       title = find('tr#0').find('.title').text
       expect(title).to eq('test-task')
     end
-
-    it 'find tasks by state' do
-      fill_in 'search', with: I18n.t('task.pending')
-      click_button I18n.t('index.searchBtn')
-      state = find('tr#0').find('.state').text
-      expect(state).to eq(I18n.t('task.pending'))
-    end
   end
 
   context 'when tasks order by priority' do
