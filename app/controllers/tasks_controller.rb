@@ -6,12 +6,17 @@ class TasksController < ApplicationController
   def index
     # return search(params[:search]) if params[:search]
 
+    # @tasks = Task.all.order('created_at DESC')
+
     # order(params[:end_time], params[:priority])
 
-    @tasks = Task.tagged_with(params[:tag]) if params[:tag]
+    if params[:search]
+      search(params[:search])
+    else
+      @tasks = Task.tagged_with(params[:tag]) if params[:tag]
 
-    @tasks = Task.all
-
+      @tasks = Task.all
+    end
     @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
@@ -65,9 +70,9 @@ class TasksController < ApplicationController
 
   def search(search_params)
     @tasks = Task.where('title LIKE ?', "%#{search_params}%")
-    @tasks = Task.where(state: Task.states[:pending]) if search_params == t('task.pending')
-    @tasks = Task.where(state: Task.states[:processing]) if search_params == t('task.processing')
-    @tasks = Task.where(state: Task.states[:solved]) if search_params == t('task.solved')
+    @tasks = Task.where(state: 'pending') if search_params == t('task.pending')
+    @tasks = Task.where(state:'processing') if search_params == t('task.processing')
+    @tasks = Task.where(state: 'solved') if search_params == t('task.solved')
   end
 
   def order(end_time_params, priority_params)
