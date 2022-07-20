@@ -21,7 +21,7 @@
       <th><%= t('task.start') %></th>
       <th>
         <% if params[:end_time] == 'asc' %>
-          <%= link_to t('task.deadline'), root_path(:tag => :tag, :end_time => 'desc') %>
+          <%= link_to t('task.deadline'), root_path(:end_time => 'desc') %>
         <% else %>
           <%= link_to t('task.deadline'), root_path(:end_time => 'asc') %>
         <% end %>
