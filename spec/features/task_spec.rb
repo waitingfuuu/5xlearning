@@ -110,17 +110,40 @@ describe 'tasks', type: :feature do
     it 'using desc' do
       visit root_path(priority: 'desc')
 
-      priority0 = find('tr#0').find('.priority').text
+      priority = find('tr#0').find('.priority').text
 
-      expect(priority0).to eq(I18n.t('task.low'))
+      expect(priority).to eq(I18n.t('task.low'))
     end
 
     it 'using asc' do
       visit root_path(priority: 'asc')
 
-      priority0 = find('tr#0').find('.priority').text
+      priority = find('tr#0').find('.priority').text
 
-      expect(priority0).to eq(I18n.t('task.high'))
+      expect(priority).to eq(I18n.t('task.high'))
+    end
+  end
+
+  context 'when tasks order by state' do
+    before do
+      create(:task, state: 0)
+      create(:task, state: 2)
+    end
+
+    it 'using desc' do
+      visit root_path(state: 'desc')
+
+      state = find('tr#0').find('.state').text
+
+      expect(state).to eq(I18n.t('task.solved'))
+    end
+
+    it 'using asc' do
+      visit root_path(state: 'asc')
+
+      state = find('tr#0').find('.state').text
+
+      expect(state).to eq(I18n.t('task.pending'))
     end
   end
 end

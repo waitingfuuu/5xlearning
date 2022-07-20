@@ -4,10 +4,10 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    if params[:search]
-      search(params[:search])
-    elsif params[:end_time] || params[:priority]
-      order(params[:end_time], params[:priority])
+    if params[:search] || params[:state_select]
+      search
+    elsif params[:end_time] || params[:priority] || params[:state]
+      order
     else
       @tasks = Task.tagged_with(params[:tag]) if params[:tag]
 
@@ -64,18 +64,20 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def search(search_params)
-    @tasks = Task.where('title LIKE ?', "%#{search_params}%")
-    @tasks = Task.where(state: 'pending') if search_params == t('task.pending')
-    @tasks = Task.where(state: 'processing') if search_params == t('task.processing')
-    @tasks = Task.where(state: 'solved') if search_params == t('task.solved')
+  def search
+    @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
+    return if params[:state_select].blank?
+
+    @tasks = Task.where(state: params[:state_select])
   end
 
-  def order(end_time_params, priority_params)
-    @tasks = if end_time_params
-               end_time_params == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
+  def order
+    @tasks = if params[:end_time]
+               params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
+             elsif params[:state]
+               params[:state] == 'asc' ? Task.all.order('state ASC') : Task.all.order('state DESC')
              else
-               priority_params == 'asc' ? Task.all.order('priority ASC') : Task.all.order('priority DESC')
+               params[:priority] == 'asc' ? Task.all.order('priority ASC') : Task.all.order('priority DESC')
              end
   end
 end
