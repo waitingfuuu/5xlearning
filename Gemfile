@@ -46,6 +46,9 @@ gem 'bootsnap', require: false
 
 gem 'rails-i18n'
 
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

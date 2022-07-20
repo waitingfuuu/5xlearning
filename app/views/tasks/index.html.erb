@@ -7,6 +7,10 @@
     <%= search_field_tag :search %>
     <%= submit_tag t('index.searchBtn') %>
 <% end %>
+
+<%= form_tag(root_path, :method => "get") do %>
+  <%= select_tag(:state_select, options_for_select([[t('index.all'), nil], [t('task.pending'), 'pending'], [t('task.processing'), 'processing'], [t('task.solved'), 'solved']], params[:state_select]), onchange: 'this.form.submit();') %>
+<% end %>
 <br>
 
 <%= link_to t('form.create_task'), new_task_path %>
@@ -34,7 +38,13 @@
           <%= link_to t('task.priority'), root_path(:priority => 'asc') %>
         <% end %>
       </th>
-      <th><%= t('task.state') %></th>
+      <th>
+        <% if params[:state] == 'asc' %>
+          <%= link_to t('task.state'), root_path(:state => 'desc') %>
+        <% else %>
+          <%= link_to t('task.state'), root_path(:state => 'asc') %>
+        <% end %>
+      </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -64,3 +74,5 @@
 <% if flash[:notice] %>
   <div class="notice" style="color:red"><%= flash[:notice] %></div>
 <% end %>
+
+<%= paginate @tasks, window: 2 %>

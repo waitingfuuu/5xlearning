@@ -52,6 +52,7 @@ en:
     searchBtn: "search"
     edit: "edit"
     delete: "delete"
+    all: "all"
   form:
     create_task: "create task"
     edit_task: "edit task"
