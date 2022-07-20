@@ -62,4 +62,4 @@
   <div class="notice" style="color:red"><%= flash[:notice] %></div>
 <% end %>
 
-<%= paginate @tasks %>
+<%= paginate @tasks, window: 2 %>
