@@ -2,8 +2,8 @@
   <h1 class="mb-8 text-5xl font-extrabold font-mono"><%= t('index.title') %></h1>
 
   <div class="absolute right-0 top-20 text-white">
-    <div class="p-3 bg-rose-400 hover:bg-rose-600"><%= link_to "中文版", :locale => "zh-TW" %></div>
-    <div class="p-3 bg-sky-400 hover:bg-sky-600"><%= link_to "English", :locale => "en" %></div>
+    <div class="px-5 py-3 bg-rose-400 hover:bg-rose-600"><%= link_to "中文版", :locale => "zh-TW" %></div>
+    <div class="px-5 py-3 bg-sky-400 hover:bg-sky-600"><%= link_to "English", :locale => "en" %></div>
   </div>
 
   <div class="flex m-8">
@@ -13,7 +13,7 @@
     <%= form_tag(root_path, :method => "get") do %>
       <div class="flex flex-row mr-5 inset-0">
         <div><%= search_field_tag :search %></div>
-        <div class="px-3 pt-2 bg-black text-white hover:bg-gray-800"><%= submit_tag t('index.searchBtn') %></div>
+        <div class="px-3 pt-2 bg-black text-white hover:bg-gray-700"><%= submit_tag t('index.searchBtn') %></div>
       </div>
     <% end %>
     <%= form_tag(root_path, :method => "get") do %>
@@ -25,33 +25,33 @@
   <table class="font-sans text-center border-separate border-spacing-2" id='task_list_table'>
     <thead>
       <tr class="text-white h-12">
-        <th class="bg-slate-500 px-3"><%= t('task.title') %></th>
-        <th class="bg-slate-500 px-3"><%= t('task.content') %></th>
-        <th class="bg-slate-500 px-3"><%= t('task.tag') %></th>
-        <th class="bg-slate-500 px-3"><%= t('task.start') %></th>
-        <th class="bg-slate-500 px-3">
+        <th class="bg-slate-500 px-3 w-36"><%= t('task.title') %></th>
+        <th class="bg-slate-500 px-3 min-w-72"><%= t('task.content') %></th>
+        <th class="bg-slate-500 px-3 w-48"><%= t('task.tag') %></th>
+        <th class="bg-slate-500 px-3 w-36"><%= t('task.start') %></th>
+        <th class="bg-slate-500 px-3 w-36 underline hover:bg-slate-700">
           <% if params[:end_time] == 'asc' %>
             <%= link_to t('task.deadline'), root_path(:end_time => 'desc') %>
           <% else %>
             <%= link_to t('task.deadline'), root_path(:end_time => 'asc') %>
           <% end %>
         </th>
-        <th class="bg-slate-500 px-3"><%= t('task.created_at') %></th>
-        <th class="bg-slate-500 px-3">
+        <th class="bg-slate-500 px-3 w-36"><%= t('task.created_at') %></th>
+        <th class="bg-slate-500 px-3 w-24 underline hover:bg-slate-700">
           <% if params[:priority] == 'asc' %>
             <%= link_to t('task.priority'), root_path(:priority => 'desc') %>
           <% else %>
             <%= link_to t('task.priority'), root_path(:priority => 'asc') %>
           <% end %>
         </th>
-        <th class="bg-slate-500 px-3">
+        <th class="bg-slate-500 px-3 w-24 underline hover:bg-slate-700">
           <% if params[:state] == 'asc' %>
             <%= link_to t('task.state'), root_path(:state => 'desc') %>
           <% else %>
             <%= link_to t('task.state'), root_path(:state => 'asc') %>
           <% end %>
         </th>
-        <th colspan="3"></th>
+        <th colspan="3" class="w-36"></th>
       </tr>
     </thead>
 
@@ -66,8 +66,12 @@
           <td class='created_at'><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           <td class='priority'><%= t("task.#{task.priority}") %></td>
           <td class='state'><%= t("task.#{task.state}") %></td>
-          <td><%= link_to t('index.edit'), edit_task_path(task) %></td>
-          <td><%= link_to t('index.delete'), task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+          <td><div class="bg-rose-400 text-white rounded-full p-2"><%= link_to t('index.edit'), edit_task_path(task) %></div></td>
+          <td>
+            <div class="bg-slate-500 text-white rounded-full p-2">
+              <%= link_to t('index.delete'), task, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
+          </td>
         </tr>
       <% end %>
     </tbody>
