@@ -6,6 +6,6 @@ class DeleteTasksUserId < ActiveRecord::Migration[7.0]
   end
 
   def down
-    add_column :tasks, :user_id
+    add_column :tasks, :user_id, :integer
   end
 end

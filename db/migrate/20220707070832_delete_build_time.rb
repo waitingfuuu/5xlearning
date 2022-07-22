@@ -6,6 +6,6 @@ class DeleteBuildTime < ActiveRecord::Migration[7.0]
   end
 
   def down
-    add_column :tasks, :build_time
+    add_column :tasks, :build_time, :date
   end
 end

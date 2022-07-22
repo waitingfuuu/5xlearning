@@ -27,15 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_030311) do
     t.index ["title"], name: "index_tasks_on_title"
   end
 
-  create_table "user_tasks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_user_tasks_on_task_id"
-    t.index ["user_id"], name: "index_user_tasks_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password"
