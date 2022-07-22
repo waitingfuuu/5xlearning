@@ -34,6 +34,7 @@
         <th class="bg-slate-500 px-3 w-36"><%= t('task.title') %></th>
         <th class="bg-slate-500 px-3 min-w-72"><%= t('task.content') %></th>
         <th class="bg-slate-500 px-3 w-48"><%= t('task.tag') %></th>
+        <th class="bg-slate-500 px-3 w-48"><%= t('task.contributors') %></th>
         <th class="bg-slate-500 px-3 w-36"><%= t('task.start') %></th>
         <th class="bg-slate-500 px-3 w-36 underline hover:bg-slate-700">
           <% if params[:end_time] == 'asc' %>
@@ -67,6 +68,7 @@
           <td class='title'><%= task.title %></td>
           <td><%= task.content %></td>
           <td><%= task.tag %></td>
+          <td><%= task.user_ids %></td>
           <td><%= task.start_time.strftime('%Y/%m/%d %H:%M') %></td>
           <td class='end_time'><%= task.end_time.strftime('%Y/%m/%d %H:%M') %></td>
           <td class='created_at'><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>

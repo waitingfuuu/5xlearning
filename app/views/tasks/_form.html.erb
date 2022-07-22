@@ -18,7 +18,11 @@
     </tr>
     <tr>
       <td class="pl-20 py-2"><%= t('task.tag') %></td>
-      <td class="p-20 py-2"><%= f.text_area :tag %> <br /></td>
+      <td class="p-20 py-2"><%= f.text_field :tag %> <br /></td>
+    </tr>
+    <tr>
+      <td class="pl-20 py-2"><%= t('task.contributors') %></td>
+      <td class="p-20 py-2"><%= f.text_field :user_ids %> <br /></td>
     </tr>
     <tr>
       <td class="pl-20 py-2"><%= t('task.start') %></td>

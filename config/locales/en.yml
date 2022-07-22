@@ -30,12 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-
   task:
     title: "Title"
     content: "Content"
     tag: "Tag"
+    contributors: "Contributors"
     start: "Start"
     deadline: "Deadline"
     priority: "Priority"
