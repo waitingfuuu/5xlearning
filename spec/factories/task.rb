@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :task do
-    user_id { Faker::Number.decimal_part(digits: 2) }
     title { Faker::Lorem.word }
     content { Faker::Lorem.paragraph }
     tag { Faker::Lorem.words }
