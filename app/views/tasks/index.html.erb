@@ -67,8 +67,20 @@
         <tr id = <%= index %>  class="h-12 border border-2 border-black">
           <td class='title'><%= task.title %></td>
           <td><%= task.content %></td>
-          <td><%= task.tag %></td>
-          <td><%= task.user_ids %></td>
+          <td>
+            <div class="flex flex-row">
+              <% task.tag.split(",").each do |tag| %>
+                <div style="background-color:#93c5fd;margin-right:3px;border-radius:3px;padding:2px 5px"><%= tag %></div>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="flex flex-row">
+              <% task.user_ids.each do |id| %>
+                <div style="background-color:#fda4af;margin-right:3px;border-radius:3px;padding:2px 5px"><%= id %></div>
+              <% end %>
+            </div>
+          </td>
           <td><%= task.start_time.strftime('%Y/%m/%d %H:%M') %></td>
           <td class='end_time'><%= task.end_time.strftime('%Y/%m/%d %H:%M') %></td>
           <td class='created_at'><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
