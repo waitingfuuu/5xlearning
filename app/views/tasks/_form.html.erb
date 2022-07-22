@@ -1,41 +1,46 @@
 <%= form_for @task, :html=> {:id => 'task_form'} do |f| %>
   <% if @task.errors.any? %>
+    <div class="rounded-lg bg-red-200 text-center mx-auto my-5 p-2 w-128 ">
       <% @task.errors.full_messages.each do |msg| %>
         <p style='color:red'><%= msg %></p>
       <% end %>
+    </div>
   <% end %>
 
-  <table>
+  <table class="border border-4 border-slate-500">
     <tr>
-      <td><%= t('task.title') %></td>
-      <td><%= f.text_field :title %> <br /></td>
-    </tr>
-    <tr>
-      <td><%= t('task.content') %></td>
-      <td><%= f.text_area :content %> <br /></td>
+      <td class="pl-20 pt-10 pb-2"><%= t('task.title') %></td>
+      <td class="p-20 pt-10 pb-2"><%= f.text_field :title %> <br /></td>
     </tr>
     <tr>
-      <td><%= t('task.tag') %></td>
-      <td><%= f.text_area :tag %> <br /></td>
+      <td class="pl-20 py-2"><%= t('task.content') %></td>
+      <td class="p-20 py-2"><%= f.text_area :content %> <br /></td>
     </tr>
     <tr>
-      <td><%= t('task.start') %></td>
-      <td><%= f.datetime_select :start_time, :ampm => true, :start_minute => [0,15,30,45] %> <br /></td>
+      <td class="pl-20 py-2"><%= t('task.tag') %></td>
+      <td class="p-20 py-2"><%= f.text_area :tag %> <br /></td>
     </tr>
     <tr>
-      <td><%= t('task.deadline') %></td>
-      <td><%= f.datetime_select :end_time, :ampm => true, :start_minute => [0,15,30,45] %> <br /></td>
+      <td class="pl-20 py-2"><%= t('task.start') %></td>
+      <td class="p-20 py-2"><%= f.datetime_select :start_time, :ampm => true, :start_minute => [0,15,30,45] %> <br /></td>
     </tr>
     <tr>
-      <td><%= t('task.priority') %></td>
-      <td><%= f.select(:priority, [[t('task.high'), 'high'], [t('task.medium'), 'medium'], [t('task.low'), 'low']]) %> <br /></td>
-    </tr>
-      <td><%= t('task.state') %></td>
-      <td><%= f.select(:state, [[t('task.pending'), 'pending'], [t('task.processing'), 'processing'], [t('task.solved'), 'solved']]) %> <br /></td>
+      <td class="pl-20 py-2"><%= t('task.deadline') %></td>
+      <td class="p-20 py-2"><%= f.datetime_select :end_time, :ampm => true, :start_minute => [0,15,30,45] %> <br /></td>
     </tr>
     <tr>
-      <td colspan="2"><%= f.submit t('form.submitBtn') %></td>
+      <td class="pl-20 py-2"><%= t('task.priority') %></td>
+      <td class="p-20 py-2"><%= f.select(:priority, [[t('task.high'), 'high'], [t('task.medium'), 'medium'], [t('task.low'), 'low']]) %> <br /></td>
     </tr>
-    
+      <td class="pl-20 py-2"><%= t('task.state') %></td>
+      <td class="p-20 py-2"><%= f.select(:state, [[t('task.pending'), 'pending'], [t('task.processing'), 'processing'], [t('task.solved'), 'solved']]) %> <br /></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="pb-10">
+        <div class="w-48 mx-auto mt-5 border-2 px-5 py-2 rounded-lg border-rose-400 border-b-4 font-black translate-y-2 border-l-4 bg-rose-400 text-white text-center hover:bg-mybg hover:text-rose-400">
+          <%= f.submit t('form.submitBtn') %>
+        </div>
+      </td>
+    </tr>
   </table>
 <% end %>
