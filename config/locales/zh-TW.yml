@@ -1,11 +1,8 @@
 zh-TW:
-  hello: "哈囉！世界！"
-  
   task:
     title: "標題"
     content: "內容"
     tag: "標籤"
-    contributors: "參與者"
     start: "開始時間"
     deadline: "結束時間"
     priority: "優先順序"

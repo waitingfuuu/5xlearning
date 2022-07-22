@@ -34,7 +34,6 @@
         <th class="bg-slate-500 px-3 w-36"><%= t('task.title') %></th>
         <th class="bg-slate-500 px-3 min-w-72"><%= t('task.content') %></th>
         <th class="bg-slate-500 px-3 w-48"><%= t('task.tag') %></th>
-        <th class="bg-slate-500 px-3 w-48"><%= t('task.contributors') %></th>
         <th class="bg-slate-500 px-3 w-36"><%= t('task.start') %></th>
         <th class="bg-slate-500 px-3 w-36 underline hover:bg-slate-700">
           <% if params[:end_time] == 'asc' %>
@@ -71,13 +70,6 @@
             <div class="flex flex-row">
               <% task.tag.split(",").each do |tag| %>
                 <div style="background-color:#93c5fd;margin-right:3px;border-radius:3px;padding:2px 5px"><%= tag %></div>
-              <% end %>
-            </div>
-          </td>
-          <td>
-            <div class="flex flex-row">
-              <% task.user_ids.each do |id| %>
-                <div style="background-color:#fda4af;margin-right:3px;border-radius:3px;padding:2px 5px"><%= User.find(id).name %></div>
               <% end %>
             </div>
           </td>
