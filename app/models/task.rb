@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  has_many :user_tasks, dependent: :restrict_with_exception
-  has_many :users, through: :user_tasks
+  belongs_to :user
 
   validates :title, presence: true
   enum priority: { high: 0, medium: 1, low: 2 }
