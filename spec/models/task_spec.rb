@@ -9,8 +9,8 @@ RSpec.describe Task, type: :model do
 
   describe 'when search tasks' do
     it 'finds a task by title' do
-      task = create(:task, title: 'test')
-      result = described_class.where(title: 'test')
+      task = create(:task, :with_user)
+      result = described_class.where(title: task.title)
       expect(result).to eq([task])
     end
   end

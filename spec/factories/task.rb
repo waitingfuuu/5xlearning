@@ -9,6 +9,9 @@ FactoryBot.define do
     end_time { Faker::Time.between(from: DateTime.now, to: DateTime.now + 1) }
     priority { Faker::Number.between(from: 0, to: 2) }
     state { Faker::Number.between(from: 0, to: 2) }
-    association :user, factory: :user
+
+    trait :with_user do
+      association :user, factory: :user
+    end
   end
 end

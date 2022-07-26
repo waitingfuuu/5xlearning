@@ -21,6 +21,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user = User.first
 
     if @task.save
       flash[:notice] = t('flash.task_successfully_created')
