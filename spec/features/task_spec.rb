@@ -9,6 +9,7 @@ describe 'tasks', type: :feature do
   end
 
   context 'when create task' do
+    
     it 'link to new task path' do
       click_link I18n.t('form.create_task')
       expect(page).to have_content(I18n.t('form.create_task'))
@@ -54,6 +55,7 @@ describe 'tasks', type: :feature do
     let(:tasks) { create_list(:task, 3) }
 
     it 'first task is newest' do
+      binding.break
       str = find('tr#0').find('.created_at').text
       view_created_at = DateTime.parse(str).strftime('%Y/%m/%d %H:%M')
       db_created_at = tasks[0].created_at.strftime('%Y/%m/%d %H:%M')
