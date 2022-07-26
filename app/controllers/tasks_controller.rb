@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
+    @user = User.find(session[:user_id]) if session[:user_id]
+
     if params[:search] || params[:state_select]
       search
     elsif params[:end_time] || params[:priority] || params[:state]

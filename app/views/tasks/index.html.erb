@@ -1,4 +1,10 @@
-<div><%= link_to 'Sign up', '/signup' %></div>
+<% if @user %>
+  Welcome <%= @user.name %>
+  <div><%= link_to 'Logout', 'logout', method: 'delete' %></div>
+<% else %>
+  <div><%= link_to 'Login', '/login' %></div>
+  <div><%= link_to 'Sign up', '/signup' %></div>
+<% end %>
 
 <div class="flex flex-col justify-center items-center">
   <h1 class="mb-8 text-5xl font-extrabold font-mono"><%= t('index.title') %></h1>
