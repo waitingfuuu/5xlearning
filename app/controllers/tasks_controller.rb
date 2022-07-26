@@ -4,26 +4,27 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    @user = User.find(session[:user_id]) if session[:user_id]
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
 
-    if params[:search] || params[:state_select]
-      search
-    elsif params[:end_time] || params[:priority] || params[:state]
-      order
-    else
-      @tasks = Task.tagged_with(params[:tag]) if params[:tag]
-      @tasks = User.first.tasks
+      if params[:search] || params[:state_select]
+        search
+      elsif params[:end_time] || params[:priority] || params[:state]
+        order
+      else
+        @tasks = Task.tagged_with(params[:tag]) if params[:tag]
+        @tasks = @current_user.tasks
+      end
+      @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
     end
-    @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
-
   def new
     @task = Task.new
   end
 
   def create
     @task = Task.new(task_params)
-    @task.user = User.first
+    @task.user = current_user
 
     if @task.save
       flash[:notice] = t('flash.task_successfully_created')

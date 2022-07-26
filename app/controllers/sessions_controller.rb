@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     if user && user.password == params[:session][:password]
       log_in user
+      current_user
       redirect_to root_path
     else
       flash.now[:login_error] = 'Invalid username or password'
@@ -15,6 +16,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session.delete(:user_id)
+    @current_user = nil
+    flash[:notice] = 'You have been logged out.'
+    redirect_to root_path
   end
 
   private
