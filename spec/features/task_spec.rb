@@ -57,7 +57,7 @@ describe 'tasks', type: :feature do
   end
 
   context 'when tasks order by end_time' do
-    let!(:tasks) { create_list(:task, 3, user: User.first) }
+    before { create_list(:task, 3, user: User.first) }
 
     it 'using desc' do
       visit root_path(end_time: 'desc')
