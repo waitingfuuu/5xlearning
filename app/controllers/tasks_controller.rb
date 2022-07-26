@@ -10,8 +10,7 @@ class TasksController < ApplicationController
       order
     else
       @tasks = Task.tagged_with(params[:tag]) if params[:tag]
-
-      @tasks = Task.all
+      @tasks = User.first.tasks
     end
     @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
@@ -22,6 +21,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user = User.first
 
     if @task.save
       flash[:notice] = t('flash.task_successfully_created')
@@ -56,7 +56,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:user_id, :title, :content, :tag,
+    params.require(:task).permit(:title, :content, :tag,
                                  :build_time, :start_time, :end_time, :priority, :state)
   end
 
@@ -72,12 +72,13 @@ class TasksController < ApplicationController
   end
 
   def order
+    @tasks = User.first.tasks
     @tasks = if params[:end_time]
-               params[:end_time] == 'asc' ? Task.all.order('end_time ASC') : Task.all.order('end_time DESC')
+               params[:end_time] == 'asc' ? @tasks.order('end_time ASC') : @tasks.order('end_time DESC')
              elsif params[:state]
-               params[:state] == 'asc' ? Task.all.order('state ASC') : Task.all.order('state DESC')
+               params[:state] == 'asc' ? @tasks.order('state ASC') : @tasks.order('state DESC')
              else
-               params[:priority] == 'asc' ? Task.all.order('priority ASC') : Task.all.order('priority DESC')
+               params[:priority] == 'asc' ? @tasks.order('priority ASC') : @tasks.order('priority DESC')
              end
   end
 end
