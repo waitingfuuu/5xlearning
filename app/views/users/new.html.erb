@@ -1,24 +1,33 @@
-<h1>Register</h1>
+<div class="flex flex-col justify-center items-center">
+	<h1 class="mb-8 text-5xl font-extrabold font-mono"><%= t('user.signup').camelize(:upper) %></h1>
 
-<%= form_for @user, :html=> {:id => 'user_form'} do |f| %>
-	<% if @user.errors.any? %>
-		<ul>
-			<% @user.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-			<% end %>
-		</ul>
+	<%= form_for @user, :html=> {:id => 'user_form'} do |f| %>
+		<% if @user.errors.any? %>
+			<ul>
+				<% @user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<p>
+			<%= f.label t('user.name') %>
+			<%= f.text_field :name %>
+		</p>
+		<p>
+			<%= f.label t('user.password') %>
+			<%= f.password_field :password %>
+		</p>
+    
+		<div class="w-48 mx-auto mt-5 border-2 px-5 py-2 rounded-lg border-rose-400 border-b-4 font-black translate-y-2 border-l-4 bg-rose-400 text-white text-center hover:bg-mybg hover:text-rose-400">
+			<p><%= f.button t('user.signup') %></p>
+		</div>
 	<% end %>
-	<p>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-  </p>
- 
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
- 
- 
- 
-  <p><%= f.button "Submit" %></p>
-<% end %>
+
+  <div class="mt-5 px-5 py-2">
+    <%= t('user.have_account') %>
+    <span class="underline decoration-sky-500"><%= link_to t('user.login_now'), login_path %></span>
+	</div>
+	<div class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4 bg-black text-white hover:bg-mybg hover:text-black">
+		<%= link_to t('index.return'), root_path %>
+	</div>
+</div>

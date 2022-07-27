@@ -18,6 +18,7 @@ class TasksController < ApplicationController
       @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
     end
   end
+
   def new
     @task = Task.new
   end

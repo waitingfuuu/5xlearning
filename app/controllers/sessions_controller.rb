@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       current_user
       redirect_to root_path
     else
-      flash.now[:login_error] = 'Invalid username or password'
+      flash.now[:login_error] = t('flash.invalid_username_or_password')
       render :new
     end
   end
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     @current_user = nil
-    flash[:notice] = 'You have been logged out.'
+    flash[:notice] = t('you_have_been_logged_out')
     redirect_to root_path
   end
 

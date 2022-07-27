@@ -1,14 +1,13 @@
 <% if @current_user %>
-  Welcome <%= @current_user.name %>
-  <div><%= link_to 'Logout', 'logout', method: 'delete' %></div>
+  <div>
+    <span class="mr-5 mb-8 text-2xl font-extrabold font-mono text-slate-600"><%= t('index.welcome') %> <%= @current_user.name %> !</span>
+	  <span class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4 bg-black text-white hover:bg-mybg hover:text-black">
+      <%= link_to t('user.logout'), 'logout', method: 'delete' %>
+    </span>
+  </div>
 
   <div class="flex flex-col justify-center items-center">
     <h1 class="mb-8 text-5xl font-extrabold font-mono"><%= t('index.title') %></h1>
-
-    <div class="absolute right-0 top-20 text-white">
-      <div class="px-5 py-3 bg-rose-400 hover:bg-rose-600"><%= link_to "中文版", :locale => "zh-TW" %></div>
-      <div class="px-5 py-3 bg-sky-400 hover:bg-sky-600"><%= link_to "English", :locale => "en" %></div>
-    </div>
 
     <div class="flex m-8">
       <div class="px-5 py-2 mr-5 border-2 border-rose-400 bg-white text-rose-400 font-bold hover:bg-rose-400 hover:text-white">
@@ -97,6 +96,10 @@
   </div>
 
 <% else %>
-  <div><%= link_to 'Login', '/login' %></div>
-  <div><%= link_to 'Sign up', '/signup' %></div>
+  <div class="w-48 mx-auto mt-5 border-2 px-5 py-2 rounded-lg border-rose-400 border-b-4 font-black translate-y-2 border-l-4 bg-rose-400 text-white text-center hover:bg-mybg hover:text-rose-400">
+    <%= link_to 'Login', '/login' %>
+  </div>
+  <div class="w-48 mx-auto mt-5 border-2 px-5 py-2 rounded-lg border-rose-400 border-b-4 font-black translate-y-2 border-l-4 bg-rose-400 text-white text-center hover:bg-mybg hover:text-rose-400">
+    <%= link_to 'Sign up', '/signup' %>
+  </div>
 <% end %>
