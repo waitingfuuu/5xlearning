@@ -18,7 +18,7 @@ describe 'users', type: :feature do
   it 'when user login' do
     click_link I18n.t('user.login')
     fill_in 'session[name]', with: user.name
-    fill_in 'session[password]', with: user.password
+    fill_in 'session[password]', with: user.password_digest
     click_button I18n.t('user.login')
     expect(page).to have_content(user.name)
   end

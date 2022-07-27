@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(name: params[:session][:name])
-    if user && BCrypt::Password.new(user.password) == params[:session][:password]
+    if user && user.authenticate(params[:session][:password_digest])
       log_in user
       current_user
       redirect_to root_path
