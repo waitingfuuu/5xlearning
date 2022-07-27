@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(name: params[:session][:name])
-    if user && user.password == params[:session][:password]
+    if user && BCrypt::Password.new(user.password) == params[:session][:password]
       log_in user
       current_user
       redirect_to root_path
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     @current_user = nil
-    flash[:notice] = t('you_have_been_logged_out')
+    flash[:notice] = t('flash.you_have_been_logged_out')
     redirect_to root_path
   end
 

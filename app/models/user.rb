@@ -2,6 +2,6 @@
 
 class User < ApplicationRecord
   has_many :tasks, dependent: :restrict_with_exception
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :password, presence: true
 end

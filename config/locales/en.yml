@@ -55,6 +55,7 @@ en:
     signup_now: "Sign up now!"
     have_account: "Already have an account?"
     login_now: "Login now!"
+    password_confirmation: "password confirmation"
   index:
     title: "Task List"
     searchBtn: "search"

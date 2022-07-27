@@ -26,6 +26,7 @@ zh-TW:
     signup_now: "現在註冊!"
     have_account: "已經有帳號了？"
     login_now: "現在登入！"
+    password_confirmation: '確認密碼'
   index:
     title: "任務列表"
     searchBtn: "搜尋"
