@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserRenamePasswordDigest < ActiveRecord::Migration[7.0]
   def up
     rename_column :users, :password, :password_digest
