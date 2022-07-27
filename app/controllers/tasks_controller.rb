@@ -76,7 +76,8 @@ class TasksController < ApplicationController
   end
 
   def order
-    @tasks = User.first.tasks
+    @tasks = Task.tagged_with(params[:tag]) if params[:tag]
+    @tasks = @current_user.tasks
     @tasks = if params[:end_time]
                params[:end_time] == 'asc' ? @tasks.order('end_time ASC') : @tasks.order('end_time DESC')
              elsif params[:state]
