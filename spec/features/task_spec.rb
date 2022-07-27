@@ -5,7 +5,13 @@ require 'rails_helper'
 describe 'tasks', type: :feature do
   let!(:task) { create(:task, :with_user) }
 
-  before { visit root_path }
+  before do
+    visit root_path
+    click_link I18n.t('user.login')
+    fill_in 'session[name]', with: User.first.name
+    fill_in 'session[password]', with: User.first.password
+    click_button I18n.t('user.login')
+  end
 
   context 'when create task' do
     it 'shows new task' do

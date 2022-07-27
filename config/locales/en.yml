@@ -48,9 +48,9 @@ en:
   user:
     name: "name"
     password: "password"
-    signup: "sign up"
-    login: "login"
-    logout: "logout"
+    signup: "Sign up"
+    login: "Login"
+    logout: "Logout"
     new_user: "New user?"
     signup_now: "Sign up now!"
     have_account: "Already have an account?"
