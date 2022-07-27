@@ -9,7 +9,7 @@ describe 'tasks', type: :feature do
     visit root_path
     click_link I18n.t('user.login')
     fill_in 'session[name]', with: User.first.name
-    fill_in 'session[password]', with: User.first.password
+    fill_in 'session[password]', with: 'password'
     click_button I18n.t('user.login')
   end
 

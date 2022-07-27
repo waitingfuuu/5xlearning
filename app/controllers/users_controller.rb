@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    @user.password_digest = BCrypt::Password.create(@user.password_digest)
+    @user.password_digest = BCrypt::Password.create(user_params[:password])
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: t('flash.signup_successfully')
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :password_digest)
+    params.require(:user).permit(:name, :password)
   end
 end
