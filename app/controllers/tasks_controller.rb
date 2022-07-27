@@ -4,19 +4,19 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
-    if session[:user_id]
-      @current_user = User.find(session[:user_id])
+    return unless session[:user_id]
 
-      if params[:search] || params[:state_select]
-        search
-      elsif params[:end_time] || params[:priority] || params[:state]
-        order
-      else
-        @tasks = Task.tagged_with(params[:tag]) if params[:tag]
-        @tasks = @current_user.tasks
-      end
-      @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @current_user = User.find(session[:user_id])
+
+    if params[:search] || params[:state_select]
+      search
+    elsif params[:end_time] || params[:priority] || params[:state]
+      order
+    else
+      @tasks = Task.tagged_with(params[:tag]) if params[:tag]
+      @tasks = @current_user.tasks
     end
+    @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new

@@ -44,5 +44,6 @@ zh-TW:
     task_successfully_edited: "任務編輯成功！"
     task_successfully_deleted: "任務刪除成功！"
     invalid_username_or_password: '用戶名或密碼錯誤！'
-    you_have_been_logged_out: '成功登出！'
+    you_have_been_logged_out: '登出成功！'
+    signup_successfully: "註冊成功!"
   

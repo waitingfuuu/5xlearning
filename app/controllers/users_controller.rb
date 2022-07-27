@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Sign up successfully'
+      redirect_to root_path, notice: t('flash.signup_successfully')
     else
       render :new, status: :unprocessable_entity
     end

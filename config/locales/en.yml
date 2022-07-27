@@ -74,3 +74,4 @@ en:
     task_successfully_deleted: "Task successfully deleted!"
     invalid_username_or_password: 'Invalid username or password!'
     you_have_been_logged_out: 'You have been logged out!'
+    signup_successfully: "Sign up successfully!"
