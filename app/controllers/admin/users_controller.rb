@@ -5,20 +5,20 @@ module Admin
     before_action :set_admin_user, only: %i[show edit update destroy]
 
     def index
-      @admin_users = Admin::User.all
+      @admin_users = User.all
     end
 
     def new
-      @admin_user = Admin::User.new
+      @admin_user = User.new
     end
 
     def create
-      @admin_user = Admin::User.new(admin_user_params)
+      @admin_user = User.new(admin_user_params)
 
       if @admin_user.save
         flash[:notice] = t('flash.user_successfully_created')
 
-        redirect_to admin_user_path
+        redirect_to admin_users_path
       else
         render :new, status: :unprocessable_entity
       end
@@ -37,10 +37,11 @@ module Admin
     end
 
     def destroy
+      @admin_user.tasks.destroy_all
       User.destroy(params[:id])
 
       flash[:notice] = t('flash.user_successfully_deleted')
-      redirect_to admin_user_path
+      redirect_to admin_users_path
     end
 
     def show; end
@@ -52,7 +53,7 @@ module Admin
     end
 
     def admin_user_params
-      params.require(:user).permit(:name, :password)
+      params.require(:admin_user).permit(:name, :password)
     end
   end
 end
