@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :set_locale
+  include SessionsHelper
 
   def set_locale
     # 可以將 ["en", "zh-TW"] 設定為 VALID_LANG 放到 config/environment.rb 中

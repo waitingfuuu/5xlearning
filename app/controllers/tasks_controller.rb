@@ -4,13 +4,17 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update edit]
 
   def index
+    return unless session[:user_id]
+
+    @current_user = User.find(session[:user_id])
+
     if params[:search] || params[:state_select]
       search
     elsif params[:end_time] || params[:priority] || params[:state]
       order
     else
       @tasks = Task.tagged_with(params[:tag]) if params[:tag]
-      @tasks = User.first.tasks
+      @tasks = @current_user.tasks
     end
     @tasks = @tasks.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
@@ -21,7 +25,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.user = User.first
+    @task.user = current_user
 
     if @task.save
       flash[:notice] = t('flash.task_successfully_created')
@@ -65,14 +69,15 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.where('title LIKE ?', "%#{params[:search]}%")
+    @tasks = @current_user.tasks.where('title LIKE ?', "%#{params[:search]}%")
     return if params[:state_select].blank?
 
     @tasks = Task.where(state: params[:state_select])
   end
 
   def order
-    @tasks = User.first.tasks
+    @tasks = Task.tagged_with(params[:tag]) if params[:tag]
+    @tasks = @current_user.tasks
     @tasks = if params[:end_time]
                params[:end_time] == 'asc' ? @tasks.order('end_time ASC') : @tasks.order('end_time DESC')
              elsif params[:state]

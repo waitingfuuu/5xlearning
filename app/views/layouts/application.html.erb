@@ -13,6 +13,11 @@
   </head>
 
   <body class="bg-mybg">
+    <div class="absolute right-0 top-20 text-white">
+      <div class="px-5 py-3 bg-rose-400 hover:bg-rose-600"><%= link_to "中文版", :locale => "zh-TW" %></div>
+      <div class="px-5 py-3 bg-sky-400 hover:bg-sky-600"><%= link_to "English", :locale => "en" %></div>
+    </div>
+    
     <main class="flex flex-col w-full h-full px-8 py-16">
       <%= yield %>
     </main>

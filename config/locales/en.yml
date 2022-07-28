@@ -45,12 +45,25 @@ en:
     processing: "processing"
     solved: "solved"
     created_at: "Create time"
+  user:
+    name: "name"
+    password: "password"
+    signup: "Sign up"
+    login: "Login"
+    logout: "Logout"
+    new_user: "New user?"
+    signup_now: "Sign up now!"
+    have_account: "Already have an account?"
+    login_now: "Login now!"
+    password_confirmation: "password confirmation"
   index:
     title: "Task List"
     searchBtn: "search"
     edit: "edit"
     delete: "delete"
     all: "all"
+    return: "Return"
+    welcome: "Welcome"
   form:
     create_task: "create task"
     edit_task: "edit task"
@@ -60,3 +73,6 @@ en:
     task_successfully_created: "Task successfully created!"
     task_successfully_edited: "Task successfully edited!"
     task_successfully_deleted: "Task successfully deleted!"
+    invalid_username_or_password: 'Invalid username or password!'
+    you_have_been_logged_out: 'You have been logged out!'
+    signup_successfully: "Sign up successfully!"

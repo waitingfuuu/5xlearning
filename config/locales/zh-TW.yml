@@ -14,12 +14,27 @@ zh-TW:
     processing: "進行中"
     solved: "已完成"
     created_at: "建立時間"
+  user:
+    name: "名稱"
+    password: "密碼"
+    signup: "註冊"
+    login: "登入"
+    logout: "登出"
+    new_user: "新用戶？"
+    signup_now: "現在註冊!"
+    have_acount: "現在註冊!"
+    signup_now: "現在註冊!"
+    have_account: "已經有帳號了？"
+    login_now: "現在登入！"
+    password_confirmation: '確認密碼'
   index:
     title: "任務列表"
     searchBtn: "搜尋"
     edit: "編輯"
     delete: "刪除"
     all: "全部"
+    return: "返回"
+    welcome: "歡迎"
   form:
     create_task: "新建任務"
     edit_task: "編輯任務"
@@ -29,4 +44,7 @@ zh-TW:
     task_successfully_created: "任務新建成功！"
     task_successfully_edited: "任務編輯成功！"
     task_successfully_deleted: "任務刪除成功！"
+    invalid_username_or_password: '用戶名或密碼錯誤！'
+    you_have_been_logged_out: '登出成功！'
+    signup_successfully: "註冊成功!"
   
