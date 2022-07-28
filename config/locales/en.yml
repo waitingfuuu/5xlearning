@@ -59,6 +59,7 @@ en:
   admin:
     title: "User Management"
     create_user: "Create User"
+    show_tasks: "Show Tasks"
   index:
     title: "Task List"
     searchBtn: "Search"

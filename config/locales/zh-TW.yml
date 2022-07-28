@@ -30,6 +30,7 @@ zh-TW:
   admin:
     title: "使用者管理"
     create_user: "新增使用者"
+    show_tasks: "查看任務"
   index:
     title: "任務列表"
     searchBtn: "搜尋"

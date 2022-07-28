@@ -44,7 +44,9 @@ module Admin
       redirect_to admin_users_path
     end
 
-    def show; end
+    def user_tasks
+      set_admin_user
+    end
 
     private
 

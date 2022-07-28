@@ -2,7 +2,7 @@
   <div>
     <span class="mr-5 mb-8 text-2xl font-extrabold font-mono text-slate-600"><%= t('index.welcome') %> <%= @current_user.name %> !</span>
 	  <span class="mt-5 mr-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4 bg-black text-white hover:bg-mybg hover:text-black">
-      <%= link_to t('admin.title'), admin_users_path, method: 'delete' %>
+      <%= link_to t('admin.title'), admin_users_path %>
     </span>
     <span class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4 bg-black text-white hover:bg-mybg hover:text-black">
       <%= link_to t('user.logout'), 'logout', method: 'delete' %>
