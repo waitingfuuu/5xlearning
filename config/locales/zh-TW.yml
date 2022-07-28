@@ -26,7 +26,9 @@ zh-TW:
     signup_now: "現在註冊!"
     have_account: "已經有帳號了？"
     login_now: "現在登入！"
-    password_confirmation: '確認密碼'
+  admin:
+    title: "使用者管理"
+    create_user: "新增使用者"
   index:
     title: "任務列表"
     searchBtn: "搜尋"
@@ -38,12 +40,17 @@ zh-TW:
   form:
     create_task: "新建任務"
     edit_task: "編輯任務"
-    submitBtn: "提交"
+    create_user: "新建使用者"
+    edit_user: "編輯使用者"
+    submitBtn: "確認"
     back_to_task_list: "返回任務列表"
   flash:
     task_successfully_created: "任務新建成功！"
     task_successfully_edited: "任務編輯成功！"
     task_successfully_deleted: "任務刪除成功！"
+    user_successfully_created: "使用者新建成功！"
+    user_successfully_edited: "使用者編輯成功！"
+    user_successfully_deleted: "使用者刪除成功！"
     invalid_username_or_password: '用戶名或密碼錯誤！'
     you_have_been_logged_out: '登出成功！'
     signup_successfully: "註冊成功!"

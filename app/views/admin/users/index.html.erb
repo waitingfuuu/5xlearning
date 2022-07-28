@@ -1,0 +1,52 @@
+<div>
+  <span class="mt-5 mr-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4 bg-black text-white hover:bg-mybg hover:text-black">
+    <%= link_to t('form.back_to_task_list'), root_path, method: 'delete' %>
+  </span>
+</div>
+
+<div class="flex flex-col justify-center items-center">
+	<h1 class="mb-8 text-5xl font-extrabold font-mono"><%= t('admin.title') %></h1>
+
+	<div class="flex m-8">
+		<div class="px-5 py-2 mr-5 border-2 border-rose-400 bg-white text-rose-400 font-bold hover:bg-rose-400 hover:text-white">
+			<%= link_to t('admin.create_user'), new_admin_user_path %>
+		</div>
+		<%= form_tag(root_path, :method => "get") do %>
+			<div class="flex flex-row mr-5 inset-0">
+				<div><%= search_field_tag :search %></div>
+				<div class="px-3 pt-2 bg-black text-white hover:bg-gray-700"><%= submit_tag t('index.searchBtn') %></div>
+			</div>
+		<% end %>
+	</div>
+
+	<% if flash[:notice] %>
+		<div class="notice rounded-lg bg-red-200 text-center mx-auto my-5 p-2" style="color:red">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+
+	<table class="font-sans text-center border-separate border-spacing-2" id='task_list_table'>
+		<thead>
+			<tr class="text-white h-12">
+				<th class="bg-slate-500 px-3 w-36"><%= t('user.name') %></th>
+				<th class="bg-slate-500 px-3 w-36"><%= t('task.created_at') %></th>
+				<th colspan="3" class="w-36"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @admin_users.each_with_index do |user, index| %>
+				<tr id = <%= index %>  class="h-12 border border-2 border-black">
+					<td class='title'><%= user.name %></td>
+					<td class='created_at'><%= user.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+					<td><div class="bg-rose-400 text-white rounded-full p-2 hover:bg-rose-500"><%= link_to t('index.edit'), edit_admin_user_path(user) %></div></td>
+					<td>
+						<div class="bg-slate-500 text-white rounded-full p-2 hover:bg-slate-600">
+							<%= link_to t('index.delete'), user, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+						</div>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

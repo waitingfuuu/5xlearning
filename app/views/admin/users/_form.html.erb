@@ -1,0 +1,27 @@
+<%= form_for @admin_user, :html=> {:id => 'user_form'} do |f| %>
+  <% if @admin_user.errors.any? %>
+    <div class="rounded-lg bg-red-200 text-center mx-auto my-5 p-2 w-128 ">
+      <% @admin_user.errors.full_messages.each do |msg| %>
+        <p style='color:red'><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <table class="border border-4 border-slate-500">
+    <tr>
+      <td class="pl-20 pt-10 pb-2"><%= t('user.name') %></td>
+      <td class="p-20 pt-10 pb-2"><%= f.text_field :name %> <br /></td>
+    </tr>
+    <tr>
+      <td class="pl-20 pt-10 pb-2"><%= t('user.password') %></td>
+      <td class="p-20 pt-10 pb-2"><%= f.password_field :password %> <br /></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="pb-10">
+        <div class="w-48 mx-auto mt-5 border-2 px-5 py-2 rounded-lg border-rose-400 border-b-4 font-black translate-y-2 border-l-4 bg-rose-400 text-white text-center hover:bg-mybg hover:text-rose-400">
+          <%= f.submit t('form.submitBtn') %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>
