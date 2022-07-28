@@ -55,8 +55,9 @@ en:
     signup_now: "Sign up now!"
     have_account: "Already have an account?"
     login_now: "Login now!"
+    tasks_number: "Tasks Number"
   admin:
-    title: "Admin"
+    title: "User Management"
     create_user: "Create User"
   index:
     title: "Task List"
