@@ -62,6 +62,7 @@ en:
   index:
     title: "Task List"
     searchBtn: "Search"
+    operate: "Operate"
     edit: "Edit"
     delete: "Delete"
     all: "All"

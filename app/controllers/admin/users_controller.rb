@@ -37,7 +37,7 @@ module Admin
     end
 
     def destroy
-      Admin::User.destroy(params[:id])
+      User.destroy(params[:id])
 
       flash[:notice] = t('flash.user_successfully_deleted')
       redirect_to admin_user_path
@@ -52,7 +52,7 @@ module Admin
     end
 
     def admin_user_params
-      params.fetch(:admin_user, {})
+      params.require(:user).permit(:name, :password)
     end
   end
 end
