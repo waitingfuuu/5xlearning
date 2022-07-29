@@ -24,6 +24,7 @@
 			<tr class="text-white h-12">
 				<th class="bg-slate-500 px-3 w-36"><%= t('user.name') %></th>
 				<th class="bg-slate-500 px-3 w-36"><%= t('user.tasks_number') %></th>
+				<th class="bg-slate-500 px-3 w-36"><%= t('user.identity') %></th>
 				<th colspan="3" class="bg-slate-500 px-3 w-36"><%= t('index.operate') %></th>
 			</tr>
 		</thead>
@@ -33,6 +34,7 @@
 				<tr id = <%= index %>  class="h-12 border border-2 border-black">
 					<td class='title'><%= user.name %></td>
 					<td class='created_at'><%= user.tasks.count %></td>
+					<td class='created_at'><%= t("user.#{user.admin}") %></td>
 					<td>
             <div class="bg-sky-400 text-white rounded-full p-2 hover:bg-sky-600">
               <%= link_to t('admin.show_tasks'), tasks_path(user) %>

@@ -27,6 +27,9 @@ zh-TW:
     have_account: "已經有帳號了？"
     login_now: "現在登入！"
     tasks_number: "任務數量"
+    identity: "身份"
+    admin: "管理員"
+    general: "一般用戶"
   admin:
     title: "使用者管理"
     create_user: "新增使用者"

@@ -56,6 +56,9 @@ en:
     have_account: "Already have an account?"
     login_now: "Login now!"
     tasks_number: "Tasks Number"
+    identity: "Identity"
+    admin: "Admin"
+    general: "General"
   admin:
     title: "Admin"
     create_user: "Create User"
