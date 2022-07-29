@@ -5,13 +5,13 @@ module Admin
     before_action :set_user, only: %i[tasks edit update destroy]
 
     def index
-			@current_user ||= User.find(session[:user_id])
-			unless @current_user.admin == 'admin'
-				flash[:notice] = t('flash.user_not_admin')
+      @current_user ||= User.find(session[:user_id])
+      unless @current_user.admin == 'admin'
+        flash[:notice] = t('flash.user_not_admin')
 
-				redirect_to root_path
-				return
-			end
+        redirect_to root_path
+        return
+      end
 
       @users = User.all
     end
