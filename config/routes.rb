@@ -6,13 +6,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
-  get '/admin/users/user_tasks/:id', to: 'admin/users#user_tasks', as: 'user_tasks'
-
-  namespace :admin do
-    resources :users
-  end
+  get 'admin', to: 'admin#index'
+  get '/admin/user_tasks/:id', to: 'admin#user_tasks', as: 'user_tasks'
 
   resources :tasks
   resources :users
   resources :sessions
+  resources :admin
 end

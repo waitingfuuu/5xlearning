@@ -9,7 +9,7 @@
 
 	<div class="flex m-8">
 		<div class="px-5 py-2 mr-5 border-2 border-rose-400 bg-white text-rose-400 font-bold hover:bg-rose-400 hover:text-white">
-			<%= link_to t('admin.create_user'), new_admin_user_path %>
+			<%= link_to t('admin.create_user'), new_admin_path %>
 		</div>
 	</div>
 
@@ -40,7 +40,7 @@
           </td>
 					<td>
             <div class="bg-rose-400 text-white rounded-full p-2 hover:bg-rose-500">
-              <%= link_to t('index.edit'), edit_admin_user_path(user) %>
+              <%= link_to t('index.edit'), edit_admin_path(user) %>
             </div>
           </td>
 					<td>

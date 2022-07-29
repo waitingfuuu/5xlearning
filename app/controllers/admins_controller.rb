@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Admin
-  class UsersController < ApplicationController
+module Admins
+  class AdminsController < ApplicationController
     before_action :set_admin_user, only: %i[show edit update destroy]
 
     def index
