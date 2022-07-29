@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def index
     return unless session[:user_id]
 
-    @current_user = User.find(68)
+    @current_user = User.find(session[:user_id])
 
     if params[:search] || params[:state_select]
       search

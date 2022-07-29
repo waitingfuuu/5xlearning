@@ -1,7 +1,7 @@
-<%= form_for @admin_user, :html=> {:id => 'user_form'} do |f| %>
-  <% if @admin_user.errors.any? %>
+<%= form_for @user, url: url do |f| %>
+  <% if @user.errors.any? %>
     <div class="rounded-lg bg-red-200 text-center mx-auto my-5 p-2 w-128 ">
-      <% @admin_user.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
         <p style='color:red'><%= msg %></p>
       <% end %>
     </div>

@@ -1,6 +1,6 @@
 <div>
   <span class="mt-5 mr-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4 bg-black text-white hover:bg-mybg hover:text-black">
-    <%= link_to t('index.return '), admin_path %>
+    <%= link_to t('index.return '), admin_users_path %>
   </span>
 </div>
 
@@ -40,7 +40,7 @@
     </thead>
 
     <tbody>
-      <% @admin_user.tasks.each_with_index do |task, index| %>
+      <% @user.tasks.each_with_index do |task, index| %>
         <tr id = <%= index %>  class="h-12 border border-2 border-black">
           <td class='title'><%= task.title %></td>
           <td><%= task.content %></td>
