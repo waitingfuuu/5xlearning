@@ -5,6 +5,11 @@ module Admin
     before_action :set_user, only: %i[tasks edit update destroy]
 
     def index
+			unless session[:user_id]
+				redirect_to root_path
+				return
+			end
+
       @current_user ||= User.find(session[:user_id])
       unless @current_user.admin == 'admin'
         flash[:notice] = t('flash.user_not_admin')
@@ -13,7 +18,7 @@ module Admin
         return
       end
 
-      @users = User.all
+      @users = User.all.order('id')
     end
 
     def new
@@ -45,11 +50,7 @@ module Admin
     end
 
     def destroy
-      if @user == User.find(session[:user_id])
-        flash[:notice] = t('flash.can_not_delete_current_user')
-        redirect_to admin_users_path
-        return
-      end
+			session.delete(:user_id) if @user == User.find(session[:user_id])
 
       @user.tasks.destroy_all
       User.destroy(params[:id])
