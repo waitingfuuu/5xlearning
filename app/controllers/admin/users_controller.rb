@@ -37,6 +37,12 @@ module Admin
     end
 
     def destroy
+      if @admin_user == User.find(session[:user_id])
+        flash[:notice] = t('flash.can_not_delete_current_user')
+        redirect_to admin_users_path
+        return
+      end
+
       @admin_user.tasks.destroy_all
       User.destroy(params[:id])
 

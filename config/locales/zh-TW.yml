@@ -57,4 +57,5 @@ zh-TW:
     invalid_username_or_password: '用戶名或密碼錯誤！'
     you_have_been_logged_out: '登出成功！'
     signup_successfully: "註冊成功!"
+    can_not_delete_current_user: "不能刪除當前用戶！"
   
