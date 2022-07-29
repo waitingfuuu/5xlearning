@@ -58,4 +58,5 @@ zh-TW:
     you_have_been_logged_out: '登出成功！'
     signup_successfully: "註冊成功!"
     can_not_delete_current_user: "不能刪除當前用戶！"
+    user_not_admin: "當前用戶不是管理員！"
   
