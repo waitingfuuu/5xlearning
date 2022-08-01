@@ -50,14 +50,18 @@ module Admin
     end
 
     def destroy
-			session.delete(:user_id) if @user == User.find(session[:user_id])
+			if @user.destroy
+				session.delete(:user_id) if @user == User.find(session[:user_id])
 
-      @user.tasks.destroy_all
-      User.destroy(params[:id])
-
-      flash[:notice] = t('flash.user_successfully_deleted')
-      redirect_to admin_users_path
-    end
+				@user.tasks.destroy_all
+				User.destroy(params[:id])
+				flash[:notice] = t('flash.user_successfully_deleted')
+				redirect_to admin_users_path
+			else
+				flash[:notice] = @user.errors[:base][0]
+				redirect_to admin_users_path
+			end
+		end
 
     def tasks; end
 

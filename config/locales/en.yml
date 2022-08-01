@@ -91,3 +91,4 @@ en:
     signup_successfully: "Sign up successfully!"
     can_not_delete_current_user: "Can't delete current user!"
     user_not_admin: "User is not administrator!"
+    admin_can_not_be_empty: "Can't delete all administrators!"

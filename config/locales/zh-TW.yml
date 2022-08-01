@@ -62,4 +62,5 @@ zh-TW:
     signup_successfully: "註冊成功!"
     can_not_delete_current_user: "不能刪除當前用戶！"
     user_not_admin: "當前用戶不是管理員！"
+    admin_can_not_be_empty: "不能清空管理員！"
   
