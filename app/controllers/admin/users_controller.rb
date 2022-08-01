@@ -50,7 +50,7 @@ module Admin
     end
 
     def destroy
-      if @user.admin == 'admin' && User.where(admin: 'admin').count <= 1
+      if @user.admin == 'admin' && User.where(admin: 'admin').count == 1
         flash[:notice] = I18n.t('flash.admin_can_not_be_empty')
       else
         @user.tasks.destroy_all
