@@ -11,7 +11,7 @@ module Admin
       end
 
       @current_user ||= User.find(session[:user_id])
-      unless @current_user.admin == 'admin'
+      unless @current_user.role == 'admin'
         flash[:notice] = t('flash.user_not_admin')
 
         redirect_to root_path
@@ -72,7 +72,7 @@ module Admin
     end
 
     def user_params
-      params.require(:user).permit(:name, :admin, :password)
+      params.require(:user).permit(:name, :role, :password)
     end
   end
 end

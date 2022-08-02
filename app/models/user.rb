@@ -6,14 +6,14 @@ class User < ApplicationRecord
   has_secure_password
   validates :name, presence: true
   validates :password_digest, presence: true
-  validates :admin, presence: true
+  validates :role, presence: true
 
   before_destroy :the_last_admin?
 
   private
 
   def the_last_admin?
-    return unless User.where(admin: 'admin').count <= 1
+    return unless User.where(role: 'admin').count <= 1
 
     errors.add(:base, I18n.t('flash.admin_can_not_be_empty'))
     throw :abort

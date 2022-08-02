@@ -13,7 +13,7 @@
     <table class="border border-4 border-slate-500">
       <tr>
         <td class="pl-20 pt-10 pb-2"><%= t('user.identity') %></td>
-        <td class="p-20 pt-10 pb-2"><%= f.select(:admin, [[t('user.admin'), 'admin'], [t('user.general'), 'general']]) %></td>
+        <td class="p-20 pt-10 pb-2"><%= f.select(:role, [[t('user.role'), 'admin'], [t('user.general'), 'general']]) %></td>
       </tr>
       <tr>
         <td class="pl-20 pt-10 pb-2"><%= t('user.name') %></td>

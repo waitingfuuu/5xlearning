@@ -29,7 +29,7 @@
 			<% @users.each_with_index do |user, index| %>
 				<tr id = <%= index %>  class="h-12 border border-2 border-black">
 					<td class='title'><%= user.name %></td>
-					<td class='created_at'><%= t("user.#{user.admin}") %></td>
+					<td class='created_at'><%= t("user.#{user.role}") %></td>
 					<td class='created_at'><%= user.tasks.count %></td>
 					<td>
             <%= link_to t('admin.show_tasks'), tasks_path(user), class: "bg-sky-400 text-white rounded-full px-3 py-3 hover:bg-sky-600" %>
