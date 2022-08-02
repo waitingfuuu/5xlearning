@@ -5,7 +5,10 @@ module Admin
     before_action :set_user, only: %i[tasks edit update destroy]
 
     def index
-      redirect_to root_path unless session[:user_id]
+      unless session[:user_id]
+        redirect_to root_path
+        return
+      end
 
       @current_user ||= User.find(session[:user_id])
       unless @current_user.role == 'admin'
