@@ -50,18 +50,15 @@ module Admin
     end
 
     def destroy
-      if @user.admin == 'admin' && User.where(admin: 'admin').count == 1
-        flash[:notice] = I18n.t('flash.admin_can_not_be_empty')
-      else
-        @user.tasks.destroy_all
-        @user.destroy
-
+      if @user.destroy
         if @user.id == session[:user_id]
           session.delete(:user_id)
           redirect_to root_path
           return
         end
         flash[:notice] = t('flash.user_successfully_deleted')
+      else
+        flash[:notice] = @user.errors.full_messages[0]
       end
       redirect_to admin_users_path
     end
