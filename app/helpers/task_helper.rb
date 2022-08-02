@@ -3,6 +3,7 @@
 module TaskHelper
   def split_tag(task)
     delimiters = [' ', ',', '，', '、', ';', '；']
-    task.tag.split(Regexp.union(delimiters))
+    tag_str = task.tag.gsub(' ', '')
+    tag_str.split(Regexp.union(delimiters))
   end
 end
