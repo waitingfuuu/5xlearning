@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :role, presence: true
 
+  enum role: { admin: 'admin', general: 'general' }
+
   before_destroy :check_last_admin
 
   private
