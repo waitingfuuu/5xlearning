@@ -13,7 +13,7 @@ class User < ApplicationRecord
   private
 
   def check_last_admin
-    return unless the_last_admin? && is_admin?
+    return unless the_last_admin? && admin?
 
     errors.add(:base, I18n.t('flash.admin_can_not_be_empty'))
     throw :abort
@@ -23,7 +23,7 @@ class User < ApplicationRecord
     User.where(role: 'admin').count <= 1
   end
 
-  def is_admin?
+  def admin?
     role == 'admin'
   end
 end
