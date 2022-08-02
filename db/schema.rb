@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_063925) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role", null: false
+    t.string "role", default: "general", null: false
   end
 
 end
