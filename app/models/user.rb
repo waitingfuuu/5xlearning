@@ -8,14 +8,18 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :role, presence: true
 
-  before_destroy :the_last_admin?
+  before_destroy :check_last_admin
 
   private
 
-  def the_last_admin?
-    return unless User.where(role: 'admin').count <= 1
+  def check_last_admin
+    return unless the_last_admin?
 
     errors.add(:base, I18n.t('flash.admin_can_not_be_empty'))
     throw :abort
+  end
+
+  def the_last_admin?
+    User.where(role: 'admin').count <= 1
   end
 end
