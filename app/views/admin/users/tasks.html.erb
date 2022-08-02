@@ -46,8 +46,7 @@
           <td><%= task.content %></td>
           <td>
             <div class="flex flex-row">
-                <% delimiters = [' ', ',', "，", "、", ";", "；"] %>
-                <% task.tag.split(Regexp.union(delimiters)).each do |tag| %>
+                <% split_tag(task.tag).each do |tag| %>
                 <div style="background-color:#93c5fd;margin-right:3px;border-radius:3px;padding:2px 5px"><%= tag %></div>
               <% end %>
             </div>
