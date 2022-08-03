@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'tasks', type: :feature do
-  let!(:task) { create(:task, :with_user) }
+  let!(:task) { create(:task, :with_user, title: 'title') }
 
   before do
     visit root_path

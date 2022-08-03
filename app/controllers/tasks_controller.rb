@@ -69,10 +69,10 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = @current_user.tasks.where('title LIKE ?', "%#{params[:search]}%")
+    @tasks = @current_user.tasks.where('title LIKE ? OR tag LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     return if params[:state_select].blank?
 
-    @tasks = Task.where(state: params[:state_select])
+    @tasks = @current_user.tasks.where(state: params[:state_select])
   end
 
   def order
