@@ -38,4 +38,4 @@
 !/app/assets/builds/.keep
 
 /config/credentials/production.key
-/config/credentials/secrets.yml
+/config/secrets.yml
